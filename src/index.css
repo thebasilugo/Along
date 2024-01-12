@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-size: 62.5%;
+  font-family: "Inter", sans-serif !important;
+  scroll-behavior: smooth;
+  width: 100%;
+  scroll-padding-top: 8rem;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: #fff;
+}
+
+/* Styling for modern browsers (Chrome, Edge, Firefox) */
+::-webkit-scrollbar {
+  width: 5px;
+  /* Width of vertical scrollbar */
+  height: 5px;
+  /* Height of horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6674cc;
+  /* Color of the thumb (draggable part) */
+  border-radius: 3px;
+  /* Rounded corners */
+}
+
+/* Styling for Firefox */
+* {
+  scrollbar-color: #6674cc transparent;
+  /* Color of the thumb and track */
+  scrollbar-width: thin;
+  /* Width of the scrollbar */
+}
+
+/* Fallback styling for older browsers */
+* {
+  scrollbar-face-color: #6674cc;
+  scrollbar-highlight-color: transparent;
+  scrollbar-shadow-color: transparent;
+  scrollbar-3dlight-color: transparent;
+  scrollbar-darkshadow-color: transparent;
+  scrollbar-arrow-color: transparent;
+}
