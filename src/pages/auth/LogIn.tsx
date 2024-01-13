@@ -97,7 +97,7 @@ const LogIn = () => {
                         <FormikControl
                           name="offer"
                           control="checkbox"
-                          label="Remember for 30 days"
+                          label="Remember my password for 30 days"
                         />
                       </Grid>
                       <Grid item>

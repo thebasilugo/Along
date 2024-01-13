@@ -22,7 +22,7 @@ const ForgotPassWord = () => {
       <Grid item container flexDirection={"column"} gap={2}>
         <Grid item>
           <Typography variant="h4" color={"black"} fontWeight={600}>
-            Forgot Your Password?,Don't fuss we have got you!
+            Forgot Your Password ? Don't fuss we have got you!
           </Typography>
         </Grid>
       </Grid>
@@ -35,12 +35,17 @@ const ForgotPassWord = () => {
         }}
       >
         <Grid item container flexDirection={"column"} gap={2}>
-          <Box>
+          <Box
+            sx={{
+              width: { xs: "250px", sm: "300px" },
+              height: "100%",
+            }}
+          >
             <Lottie
               animationData={forgotAnimation}
               loop
               autoplay
-              style={{ width: "275px", height: "300px" }}
+              style={{ width: "100%", height: "100%" }}
             />
           </Box>
 

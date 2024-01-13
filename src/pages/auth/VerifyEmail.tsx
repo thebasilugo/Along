@@ -53,7 +53,7 @@ const VerifyEmail = () => {
                 <OtpInput
                   value={otp}
                   onChange={setOtp}
-                  numInputs={6}
+                  numInputs={4}
                   containerStyle={{
                     width: "100%",
                     display: "flex",
