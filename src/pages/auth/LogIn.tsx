@@ -12,6 +12,7 @@ import FormikControl from "../../components/validation/FormikControl";
 import { useState, MouseEvent } from "react";
 import { Apple, Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import CustomButton from "../../components/CustomButton";
+import { Link } from "react-router-dom";
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(true);
@@ -87,6 +88,8 @@ const LogIn = () => {
                       sx={{
                         display: "flex",
                         justifyContent: "space-between",
+                        flexDirection: { xs: "column", sm: "row" },
+                        gap: "1rem",
                         alignItems: "center",
                       }}
                     >
@@ -98,9 +101,18 @@ const LogIn = () => {
                         />
                       </Grid>
                       <Grid item>
-                        <Typography variant="h6" color={"blue"}>
-                          forgot password ?
-                        </Typography>
+                        <Link to={"/forgot-password"}>
+                          <Button
+                            variant="text"
+                            sx={{
+                              textTransform: "initial",
+                              fontSize: "1.2rem",
+                              borderRadius: "1rem",
+                            }}
+                          >
+                            Forgot password ?
+                          </Button>
+                        </Link>
                       </Grid>
                     </Grid>
                     <Grid item sx={{ marginBottom: "3rem" }}>
@@ -123,6 +135,8 @@ const LogIn = () => {
                       sx={{
                         width: "100%",
                         display: "flex",
+                        flexDirection: { xs: "column", sm: "row" },
+                        gap: "1rem",
                         justifyContent: "space-between",
                         marginY: "1rem",
                       }}
@@ -162,13 +176,15 @@ const LogIn = () => {
                       <Typography variant="h6" fontWeight={400} color={"black"}>
                         Don’t have an account?{" "}
                       </Typography>
-                      <Typography
-                        variant="h6"
-                        color={"blue"}
-                        sx={{ paddingLeft: "0.5rem" }}
-                      >
-                        Sign Up
-                      </Typography>
+                      <Link to={"/sign-up"}>
+                        <Typography
+                          variant="h6"
+                          color={"blue"}
+                          sx={{ paddingLeft: "0.5rem" }}
+                        >
+                          Sign Up
+                        </Typography>
+                      </Link>
                     </Box>
                   </Grid>
                 </Form>

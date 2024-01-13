@@ -5,6 +5,9 @@ import { lazy } from "react";
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const LogIn = lazy(() => import("../pages/auth/LogIn"));
 const SignUp = lazy(() => import("../pages/auth/SignUp"));
+const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassWord"));
+const VerifyEmail = lazy(() => import("../pages/auth/VerifyEmail"));
+const ResetPassword = lazy(() => import("../pages/auth/ResetPassword"));
 
 const AuthLayout = () => {
   return (
@@ -49,7 +52,7 @@ const AuthLayout = () => {
         item
         sx={{
           marginLeft: {
-            sm: "60%",
+            sm: "55%",
           },
           height: "100%",
           bottom: 0,
@@ -60,7 +63,7 @@ const AuthLayout = () => {
         <Grid
           item
           sx={{
-            width: { xs: "90%" },
+            width: { xs: "80%" },
             mx: "auto",
             height: "100%",
             p: { md: 5, sm: 2, xs: 3 },
@@ -79,6 +82,9 @@ const AuthPage = () => {
       <Route element={<AuthLayout />}>
         <Route path="login" element={<LogIn />} />
         <Route path="sign-up" element={<SignUp />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="verify-email" element={<VerifyEmail />} />
+        <Route path="reset-password" element={<ResetPassword />} />
       </Route>
       <Route index element={<LandingPage />} />
     </Routes>

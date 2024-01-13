@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import { Formik, Form } from "formik";
-import { SignUpProps } from "../../utils/types";
+import { ResetPassWordProps } from "../../utils/types";
 import FormikControl from "../../components/validation/FormikControl";
 import { useState, MouseEvent } from "react";
 import { Apple, Google, Visibility, VisibilityOff } from "@mui/icons-material";
@@ -15,22 +15,19 @@ import CustomButton from "../../components/CustomButton";
 import HorizontalTextDivider from "../../components/HorizontalTextDivider";
 import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(true);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-  const intialValues: SignUpProps = {
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    confirm_password: "",
-    terms_and_policy: false,
+  const intialValues: ResetPassWordProps = {
+    tokken: "",
+    new_password: "",
+    confirm_new_password: "",
   };
-  const handleSubmit = (values: SignUpProps) => {
+  const handleSubmit = (values: ResetPassWordProps) => {
     console.log(values);
   };
   return (
@@ -47,7 +44,7 @@ const SignUp = () => {
           <Grid item container flexDirection={"column"} gap={2}>
             <Grid item>
               <Typography variant="h3" color={"black"} fontWeight={600}>
-                Get Started Now
+                Reset Password
               </Typography>
             </Grid>
           </Grid>
@@ -56,26 +53,14 @@ const SignUp = () => {
               <Formik initialValues={intialValues} onSubmit={handleSubmit}>
                 <Form>
                   <Grid item container flexDirection={"column"} gap={3}>
-                    <Grid item container spacing={2} xs={12}>
-                      <Grid item xs={12} sm={6}>
-                        <FormikControl
-                          name="first_name"
-                          placeholder="First Name"
-                        />
+                    <Grid item container>
+                      <Grid item xs={12}>
+                        <FormikControl name="tokken" placeholder="Tokken" />
                       </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <FormikControl
-                          name="last_name"
-                          placeholder="Last Name"
-                        />
-                      </Grid>
-                    </Grid>
-                    <Grid item>
-                      <FormikControl name="email" placeholder="Email" />
                     </Grid>
                     <Grid item>
                       <FormikControl
-                        name="password"
+                        name="new_password"
                         type={!showPassword ? "text" : "password"}
                         InputProps={{
                           endAdornment: (
@@ -100,7 +85,7 @@ const SignUp = () => {
                     </Grid>
                     <Grid item>
                       <FormikControl
-                        name="confirm_password"
+                        name="confirm_new_password"
                         type={!showPassword ? "text" : "password"}
                         InputProps={{
                           endAdornment: (
@@ -123,25 +108,10 @@ const SignUp = () => {
                         autoComplete="new-password"
                       />
                     </Grid>
-                    <Grid
-                      item
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Grid item>
-                        <FormikControl
-                          name="terms_and_policy"
-                          control="checkbox"
-                          label="I agree to the terms and policy"
-                        />
-                      </Grid>
-                    </Grid>
+
                     <Grid item sx={{ marginBottom: "3rem" }}>
                       <CustomButton
-                        title="Sign up"
+                        title="Reset"
                         sx={{
                           bgcolor: "#3A5B22",
                           width: "100%",
@@ -223,4 +193,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ResetPassword;
