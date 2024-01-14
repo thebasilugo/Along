@@ -33,25 +33,40 @@ const LogIn = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "flex-start",
+          alignItems: "center",
+          paddingX: { xs: "2rem", sm: "4rem" },
           marginTop: "10rem",
         }}
       >
-        <Grid item container flexDirection={"column"} gap={2}>
-          <Grid item container flexDirection={"column"} gap={2}>
-            <Grid item>
+        <Grid
+          item
+          container
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={2}
+        >
+          <Grid
+            item
+            container
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            gap={2}
+          >
+            <Grid item sx={{ width: "100%" }}>
               <Typography variant="h2" color={"black"} fontWeight={600}>
                 Welcome back!
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid item sx={{ width: "100%" }}>
               <Typography variant="h6" color={"black"} fontWeight={400}>
                 Enter your Credentials to access your account
               </Typography>
             </Grid>
           </Grid>
           <Grid item container>
-            <Grid item>
+            <Grid item sx={{ width: "100%" }}>
               <Formik initialValues={intialValues} onSubmit={handleSubmit}>
                 <Form>
                   <Grid item container flexDirection={"column"} gap={3}>

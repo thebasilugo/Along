@@ -10,46 +10,70 @@ import OtpInput from "react-otp-input";
 const VerifyEmail = () => {
   const [otp, setOtp] = useState("");
   return (
-    <>
-      <Grid item container flexDirection={"column"} gap={2}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingX: { xs: "2rem", sm: "4rem" },
+        marginTop: "6rem",
+      }}
+    >
+      <Grid
+        item
+        container
+        flexDirection={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={2}
+      >
         <Grid item>
-          <Typography variant="h4" color={"black"} fontWeight={600}>
+          <Typography
+            variant="h4"
+            color={"black"}
+            fontWeight={600}
+            width={"100%"}
+          >
             We have sent you a confirmation tokken
           </Typography>
         </Grid>
-      </Grid>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          marginTop: "1rem",
-        }}
-      >
-        <Grid item container flexDirection={"column"} gap={2}>
-          <Box>
-            <Lottie
-              animationData={verifyEmail}
-              loop
-              autoplay
-              style={{ width: "275px", height: "300px" }}
-            />
-          </Box>
-
-          <Grid item container>
-            <Grid item marginY={2}>
-              <Typography
-                variant="h6"
-                textAlign={"center"}
-                color={"black"}
-                fontWeight={400}
-              >
-                Kindly input confirmation tokken sent to{" "}
-                <span style={{ fontWeight: "600" }}>lameda789@gmail.com</span>
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Grid item container flexDirection={"column"} gap={3}>
+        <Box>
+          <Lottie
+            animationData={verifyEmail}
+            loop
+            autoplay
+            style={{ width: "100%", height: "300px" }}
+          />
+        </Box>
+        <Grid
+          item
+          container
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={2}
+        >
+          <Grid item>
+            <Typography
+              variant="h6"
+              textAlign={"center"}
+              color={"black"}
+              fontWeight={400}
+            >
+              Kindly input confirmation tokken sent to{" "}
+              <span style={{ fontWeight: "600" }}>lameda789@gmail.com</span>
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Grid
+              item
+              container
+              flexDirection={"column"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              gap={3}
+            >
+              <Grid item sx={{ width: "100%" }}>
                 <OtpInput
                   value={otp}
                   onChange={setOtp}
@@ -80,82 +104,82 @@ const VerifyEmail = () => {
                     />
                   )}
                 />
-                <Grid item sx={{ marginBottom: "3rem" }}>
-                  <CustomButton
-                    title="Confirm"
-                    sx={{
-                      bgcolor: "#3A5B22",
-                      width: "100%",
-                      fontWeight: "600",
-                      fontSize: "1.2rem",
-                      textTransform: "initial",
-                      borderRadius: "1rem",
-                    }}
-                  />
-                </Grid>
               </Grid>
-              <Grid item container>
-                <Box
+              <Grid item sx={{ width: "100%" }}>
+                <CustomButton
+                  title="Confirm"
                   sx={{
+                    bgcolor: "#3A5B22",
                     width: "100%",
-                    display: "flex",
-                    flexDirection: { xs: "column", sm: "row" },
-                    gap: "1rem",
-                    justifyContent: "space-between",
-                    marginY: "1rem",
+                    fontWeight: "600",
+                    fontSize: "1.2rem",
+                    textTransform: "initial",
+                    borderRadius: "1rem",
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <Grid item container>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: "1rem",
+                  justifyContent: "space-evenly",
+                  marginY: "2rem",
+                }}
+              >
+                <Button
+                  variant="outlined"
+                  startIcon={<Google color="success" />}
+                  sx={{
+                    border: "1px solid #D9D9D9",
+                    fontSize: "1rem",
+                    borderRadius: "1rem",
+                    color: "black",
+                    textTransform: "initial",
                   }}
                 >
-                  <Button
-                    variant="outlined"
-                    startIcon={<Google color="success" />}
-                    sx={{
-                      border: "1px solid #D9D9D9",
-                      fontSize: "1rem",
-                      borderRadius: "1rem",
-                      color: "black",
-                      textTransform: "initial",
-                    }}
-                  >
-                    Sign in with Google
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    startIcon={<Apple color="success" />}
-                    sx={{
-                      border: "1px solid #D9D9D9",
-                      fontSize: "1rem",
-                      borderRadius: "1rem",
-                      color: "black",
-                      textTransform: "initial",
-                    }}
-                  >
-                    Sign in with Apple
-                  </Button>
-                </Box>
-                <Box
-                  width={"100%"}
-                  sx={{ display: "flex", justifyContent: "center" }}
-                  marginY={"1rem"}
+                  Sign in with Google
+                </Button>
+                <Button
+                  variant="outlined"
+                  startIcon={<Apple color="success" />}
+                  sx={{
+                    border: "1px solid #D9D9D9",
+                    fontSize: "1rem",
+                    borderRadius: "1rem",
+                    color: "black",
+                    textTransform: "initial",
+                  }}
                 >
-                  <Typography variant="h6" fontWeight={400} color={"black"}>
-                    Already have an account?{" "}
+                  Sign in with Apple
+                </Button>
+              </Box>
+              <Box
+                width={"100%"}
+                sx={{ display: "flex", justifyContent: "center" }}
+                marginY={"1rem"}
+              >
+                <Typography variant="h6" fontWeight={400} color={"black"}>
+                  Already have an account?{" "}
+                </Typography>
+                <Link to={"/login"}>
+                  <Typography
+                    variant="h6"
+                    color={"blue"}
+                    sx={{ paddingLeft: "0.5rem" }}
+                  >
+                    Sign In
                   </Typography>
-                  <Link to={"/login"}>
-                    <Typography
-                      variant="h6"
-                      color={"blue"}
-                      sx={{ paddingLeft: "0.5rem" }}
-                    >
-                      Sign In
-                    </Typography>
-                  </Link>
-                </Box>
-              </Grid>
+                </Link>
+              </Box>
             </Grid>
           </Grid>
         </Grid>
-      </Box>
-    </>
+      </Grid>
+    </Box>
   );
 };
 

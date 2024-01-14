@@ -52,7 +52,7 @@ const AuthLayout = () => {
         item
         sx={{
           marginLeft: {
-            sm: "55%",
+            sm: "50%",
           },
           height: "100%",
           bottom: 0,
@@ -63,7 +63,7 @@ const AuthLayout = () => {
         <Grid
           item
           sx={{
-            width: { xs: "80%" },
+            width: { xs: "80" },
             mx: "auto",
             height: "100%",
             p: { md: 5, sm: 2, xs: 3 },

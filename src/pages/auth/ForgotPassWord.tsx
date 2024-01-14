@@ -34,11 +34,18 @@ const ForgotPassWord = () => {
           marginTop: "5rem",
         }}
       >
-        <Grid item container flexDirection={"column"} gap={2}>
+        <Grid
+          item
+          container
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={2}
+        >
           <Box
             sx={{
-              width: { xs: "250px", sm: "300px" },
-              height: "100%",
+              width: "100%",
+              height: "300px",
             }}
           >
             <Lottie
@@ -49,8 +56,15 @@ const ForgotPassWord = () => {
             />
           </Box>
 
-          <Grid item container>
-            <Grid item marginY={2}>
+          <Grid
+            item
+            container
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            gap={2}
+          >
+            <Grid item>
               <Typography
                 variant="h6"
                 textAlign={"center"}
