@@ -52,7 +52,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
           <Grid item container>
-            <Grid item>
+            <Grid item sx={{ width: "100%" }}>
               <Formik initialValues={intialValues} onSubmit={handleSubmit}>
                 <Form>
                   <Grid item container flexDirection={"column"} gap={3}>
