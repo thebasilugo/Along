@@ -52,7 +52,8 @@ const AuthLayout = () => {
         item
         sx={{
           marginLeft: {
-            sm: "50%",
+            sm: "40%",
+            lg: "60%",
           },
           height: "100%",
           bottom: 0,

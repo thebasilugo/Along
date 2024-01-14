@@ -34,7 +34,6 @@ const LogIn = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          paddingX: { xs: "2rem", sm: "4rem" },
           marginTop: "10rem",
         }}
       >

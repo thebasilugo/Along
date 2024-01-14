@@ -37,7 +37,6 @@ const ResetPassword = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          paddingX: { xs: "2rem", sm: "4rem" },
           marginTop: "10rem",
         }}
       >
@@ -121,7 +120,6 @@ const ResetPassword = () => {
                           textTransform: "initial",
                           borderRadius: "1rem",
                         }}
-                        onClick={() => navigate("/verify-email")}
                       />
                     </Grid>
                   </Grid>
