@@ -13,10 +13,9 @@ import { useState, MouseEvent } from "react";
 import { Apple, Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import CustomButton from "../../components/CustomButton";
 import HorizontalTextDivider from "../../components/HorizontalTextDivider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ResetPassword = () => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(true);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
