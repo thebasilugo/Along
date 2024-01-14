@@ -20,8 +20,13 @@ const ForgotPassWord = () => {
   return (
     <>
       <Grid item container flexDirection={"column"} gap={2}>
-        <Grid item>
-          <Typography variant="h4" color={"black"} fontWeight={600}>
+        <Grid item sx={{ width: "100%" }}>
+          <Typography
+            variant="h4"
+            color={"black"}
+            fontWeight={600}
+            textAlign={"center"}
+          >
             Forgot Your Password ? Don't fuss we have got you!
           </Typography>
         </Grid>
