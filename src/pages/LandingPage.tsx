@@ -1,12 +1,15 @@
 import { Box, Typography, Button, Grid } from "@mui/material";
 import Lottie from "lottie-react";
-import animationData from "../asset/coming_soon.json";
+import animationData from "../asset/animatedImages/coming_soon.json";
+import loginAnimation from "../asset/animatedImages/login.json";
 import { useNavigate } from "react-router-dom";
 // import logo from "../asset/landing-page-icons/logo.png";
 // import CustomButton from "../components/CustomButton";
 import { SendTimeExtensionOutlined } from "@mui/icons-material";
+import { useAppSelector } from "../redux/store";
 
 const LandingPage = () => {
+  const { auth } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   return (
     <Box
@@ -25,12 +28,12 @@ const LandingPage = () => {
         padding={2}
         sx={{
           flexDirection: { xs: "column", sm: "row" },
-          gap:'2rem'
+          gap: "2rem",
         }}
       >
         <Grid item>
           <Lottie
-            animationData={animationData}
+            animationData={auth ? loginAnimation : animationData}
             loop
             autoplay
             style={{ width: "300px", height: "300px" }}
@@ -38,18 +41,29 @@ const LandingPage = () => {
         </Grid>
         <Grid item>
           <Typography variant="h4" sx={{ paddingRight: "1rem" }}>
-            Have Started but henever gell, just go and check authentication
-            screen
+            {auth
+              ? "looks like you are logged In"
+              : "Have Started but henever gell, just go and check authentication screen"}
           </Typography>
         </Grid>
         <Grid item>
-          <Button
-            variant="contained"
-            endIcon={<SendTimeExtensionOutlined />}
-            onClick={() => navigate("/login")}
-          >
-            Go to auth
-          </Button>
+          {auth ? (
+            <Button
+              variant="contained"
+              endIcon={<SendTimeExtensionOutlined />}
+              onClick={() => navigate("/login")}
+            >
+              Log out
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              endIcon={<SendTimeExtensionOutlined />}
+              onClick={() => navigate("/login")}
+            >
+              Go to auth
+            </Button>
+          )}
         </Grid>
       </Grid>
     </Box>

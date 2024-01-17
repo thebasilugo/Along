@@ -6,15 +6,24 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import { LogInProps } from "../../utils/types";
 import FormikControl from "../../components/validation/FormikControl";
 import { useState, MouseEvent } from "react";
 import { Apple, Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import CustomButton from "../../components/CustomButton";
 import { Link } from "react-router-dom";
+import { useLoginMutation } from "../../redux/api/authSlice";
+import { useAppDispatch } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
+import { loginUserSuccess } from "../../redux/slices/auth/auth.reducer";
+import { toast, ToastContent } from "react-toastify";
+import { LoginSchema } from "../../components/validation/ValidationSchema";
 
 const LogIn = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [login, { isLoading }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(true);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -24,8 +33,30 @@ const LogIn = () => {
     email: "",
     password: "",
   };
-  const handleSubmit = (values: LogInProps) => {
-    console.log(values);
+
+  const handleSubmit = async (
+    values: LogInProps,
+    { resetForm }: FormikHelpers<LogInProps>
+  ): Promise<void> => {
+    const { email, password } = values;
+    const payload = {
+      email: email,
+      password: password,
+    };
+    const response = await login(payload);
+    if ("data" in response) {
+      const { msg, token } = response.data;
+      dispatch(loginUserSuccess(token));
+      toast.success(msg as ToastContent);
+      navigate("/");
+      resetForm();
+    }
+    if ("error" in response) {
+      if ("message" in response.error) {
+        const errMsg = response.error.message;
+        toast.error(errMsg as ToastContent);
+      }
+    }
   };
   return (
     <>
@@ -66,7 +97,11 @@ const LogIn = () => {
           </Grid>
           <Grid item container>
             <Grid item sx={{ width: "100%" }}>
-              <Formik initialValues={intialValues} onSubmit={handleSubmit}>
+              <Formik
+                initialValues={intialValues}
+                onSubmit={handleSubmit}
+                validationSchema={LoginSchema}
+              >
                 <Form>
                   <Grid item container flexDirection={"column"} gap={3}>
                     <Grid item>
@@ -131,6 +166,7 @@ const LogIn = () => {
                     </Grid>
                     <Grid item sx={{ marginBottom: "3rem" }}>
                       <CustomButton
+                        type="submit"
                         title="Login"
                         sx={{
                           bgcolor: "#3A5B22",
@@ -140,6 +176,7 @@ const LogIn = () => {
                           textTransform: "initial",
                           borderRadius: "1rem",
                         }}
+                        isSubmitting={isLoading}
                       />
                     </Grid>
                   </Grid>

@@ -6,7 +6,7 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import { SignUpProps } from "../../utils/types";
 import FormikControl from "../../components/validation/FormikControl";
 import { useState, MouseEvent } from "react";
@@ -14,24 +14,48 @@ import { Apple, Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import CustomButton from "../../components/CustomButton";
 import HorizontalTextDivider from "../../components/HorizontalTextDivider";
 import { Link, useNavigate } from "react-router-dom";
+import { SignUpSchema } from "../../components/validation/ValidationSchema";
+import { useRegisterMutation } from "../../redux/api/authSlice";
+// import { useAppDispatch } from "../../redux/store";
+import { toast, ToastContent } from "react-toastify";
 
 const SignUp = () => {
+  // const dispatch = useAppDispatch();
+  const [register, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(true);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
   const intialValues: SignUpProps = {
-    first_name: "",
-    last_name: "",
+    name: "",
     email: "",
     password: "",
     confirm_password: "",
     terms_and_policy: false,
   };
-  const handleSubmit = (values: SignUpProps) => {
-    console.log(values);
+  const handleSubmit = async (
+    values: SignUpProps,
+    { resetForm }: FormikHelpers<SignUpProps>
+  ): Promise<void> => {
+    const { name, email, password } = values;
+    const payload = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    const response = await register(payload);
+    if ("data" in response) {
+      const { msg } = response.data;
+      toast.success(msg as ToastContent);
+      navigate("/login");
+      resetForm();
+    }
+    if ("error" in response) {
+      toast.error("error occured");
+    }
   };
   return (
     <>
@@ -53,22 +77,15 @@ const SignUp = () => {
           </Grid>
           <Grid item container>
             <Grid item sx={{ width: "100%" }}>
-              <Formik initialValues={intialValues} onSubmit={handleSubmit}>
+              <Formik
+                initialValues={intialValues}
+                onSubmit={handleSubmit}
+                validationSchema={SignUpSchema}
+              >
                 <Form>
                   <Grid item container flexDirection={"column"} gap={3}>
-                    <Grid item container spacing={2} xs={12}>
-                      <Grid item xs={12} sm={6}>
-                        <FormikControl
-                          name="first_name"
-                          placeholder="First Name"
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <FormikControl
-                          name="last_name"
-                          placeholder="Last Name"
-                        />
-                      </Grid>
+                    <Grid item xs={12}>
+                      <FormikControl name="name" placeholder="Full Name" />
                     </Grid>
                     <Grid item>
                       <FormikControl name="email" placeholder="Email" />
@@ -98,7 +115,7 @@ const SignUp = () => {
                         autoComplete="new-password"
                       />
                     </Grid>
-                    <Grid item>
+                    {/* <Grid item>
                       <FormikControl
                         name="confirm_password"
                         type={!showPassword ? "text" : "password"}
@@ -122,7 +139,7 @@ const SignUp = () => {
                         placeholder="Confirm Password"
                         autoComplete="new-password"
                       />
-                    </Grid>
+                    </Grid> */}
                     <Grid
                       item
                       sx={{
@@ -141,6 +158,7 @@ const SignUp = () => {
                     </Grid>
                     <Grid item sx={{ marginBottom: "3rem" }}>
                       <CustomButton
+                        type="submit"
                         title="Sign up"
                         sx={{
                           bgcolor: "#3A5B22",
@@ -150,7 +168,7 @@ const SignUp = () => {
                           textTransform: "initial",
                           borderRadius: "1rem",
                         }}
-                        onClick={() => navigate("/verify-email")}
+                        isSubmitting={isLoading}
                       />
                     </Grid>
                   </Grid>

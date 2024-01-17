@@ -4,7 +4,7 @@ import { Apple, Google } from "@mui/icons-material";
 import CustomButton from "../../components/CustomButton";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
-import verifyEmail from "../../asset/mail2.json";
+import verifyEmail from "../../asset/animatedImages/mail2.json";
 import OtpInput from "react-otp-input";
 
 const VerifyEmail = () => {

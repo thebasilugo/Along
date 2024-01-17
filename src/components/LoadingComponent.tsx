@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import animationData from "../asset/animation_ll9cfvkm.json";
+import animationData from "../asset/animatedImages/animation_ll9cfvkm.json";
 import { Grid, Typography } from "@mui/material";
 const LoadingAnimation = () => {
   return (

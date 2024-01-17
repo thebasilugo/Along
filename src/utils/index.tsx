@@ -1,10 +1,39 @@
-// export const errorMessage = (err: unknown): string | undefined => {
-//     let message;
-//     if (isFetchBaseQueryError(err)) {
-//       //@ts-expect-error beause
-//       message = 'error' in err ? err.error : err?.data.message ? err.data.message : JSON.stringify(err.data);
-//     } else if (isErrorWithMessage(err)) {
-//       message = err.message;
-//     }
-//     return message;
-//   };
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+
+export interface Options {
+  long_name: string;
+  id: string;
+  short_name: string;
+  phone_code: string;
+}
+
+export const setToken = (token: string): void => {
+  localStorage.setItem('token', token);
+};
+
+export const getToken = (): string | null => {
+  const token = localStorage.getItem('token');
+  return token;
+};
+
+export function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryError {
+  return typeof error === 'object' && error != null && 'status' in error;
+}
+
+/**
+ * Type predicate to narrow an unknown error to an object with a string 'message' property
+ */
+export function isErrorWithMessage(error: unknown): error is { message: string } {
+  return typeof error === 'object' && error != null && 'message' in error && typeof (error as any).message === 'string';
+}
+
+export const errorMessage = (err: unknown): string | undefined => {
+  let message;
+  if (isFetchBaseQueryError(err)) {
+    //@ts-expect-error beause
+    message = 'error' in err ? err.error : err?.data.message ? err.data.message : JSON.stringify(err.data);
+  } else if (isErrorWithMessage(err)) {
+    message = err.message;
+  }
+  return message;
+};

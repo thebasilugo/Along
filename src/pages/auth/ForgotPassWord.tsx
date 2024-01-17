@@ -6,7 +6,7 @@ import { Apple, Google } from "@mui/icons-material";
 import CustomButton from "../../components/CustomButton";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
-import forgotAnimation from "../../asset/forgotPassword.json";
+import forgotAnimation from "../../asset/animatedImages/forgotPassword.json";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassWord = () => {
