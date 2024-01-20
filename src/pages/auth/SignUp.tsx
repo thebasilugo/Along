@@ -16,7 +16,7 @@ import HorizontalTextDivider from "../../components/HorizontalTextDivider";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpSchema } from "../../components/validation/ValidationSchema";
 import { useRegisterMutation } from "../../redux/api/authSlice";
-import { toast } from "react-toastify";
+import { toast, ToastContent } from "react-toastify";
 
 const SignUp = () => {
   // const dispatch = useAppDispatch();
@@ -56,7 +56,9 @@ const SignUp = () => {
       resetForm();
     }
     if ("error" in response) {
-      toast.error("error occured");
+      //@ts-ignore
+      const errMsg = response.error.data.msg;
+      toast.error(errMsg as ToastContent);
     }
   };
   return (
