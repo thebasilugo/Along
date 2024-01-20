@@ -52,7 +52,8 @@ const LogIn = () => {
       resetForm();
     }
     if ("error" in response) {
-      toast.error("error occured");
+      const errMsg = response.error;
+      toast.error(errMsg as ToastContent);
     }
   };
   return (
