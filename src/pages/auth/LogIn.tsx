@@ -45,8 +45,8 @@ const LogIn = () => {
     };
     const response = await login(payload);
     if ("data" in response) {
-      const { msg, token } = response.data;
-      dispatch(loginUserSuccess(token));
+      const { msg } = response.data;
+      dispatch(loginUserSuccess(response.data));
       toast.success(msg as ToastContent);
       navigate("/");
       resetForm();
@@ -175,6 +175,7 @@ const LogIn = () => {
                           borderRadius: "1rem",
                         }}
                         isSubmitting={isLoading}
+                        disabled={isLoading}
                       />
                     </Grid>
                   </Grid>

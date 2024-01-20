@@ -51,7 +51,7 @@ const SignUp = () => {
     const response = await register(payload);
     if ("data" in response) {
       // const { msg } = response.data;
-      toast.success("sign-up successfull, kinldy login now");
+      toast.success("sign-up successfull, kindly login now");
       navigate("/login");
       resetForm();
     }

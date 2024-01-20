@@ -31,15 +31,22 @@ export const authSlice = createSlice({
       setToken(details?.payload.token);
       state.auth = true;
       state.user = details?.payload?.user;
-      state.authToken = details?.payload.auth_token;
+      state.authToken = details?.payload.token;
       localStorage.setItem("loginUserType", details.payload.user.account_type);
       state.loginUserType = details?.payload.user.account_type;
       localStorage.removeItem("verifyUserToken");
       localStorage.removeItem("regType");
     },
+    logoutUser(state) {
+      localStorage.removeItem("token");
+      state.auth = false;
+      state.user = undefined;
+      state.loginUserType = undefined;
+      state.authToken = null;
+    },
   },
 });
 
 const { reducer, actions } = authSlice;
-export const { getUserDetails, loginUserSuccess } = actions;
+export const { getUserDetails, loginUserSuccess, logoutUser } = actions;
 export default reducer;

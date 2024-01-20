@@ -15,6 +15,7 @@ export type RegisterResponse = {
 export type LogInResponse = {
   msg: string;
   token: string;
+  user: UserProfile;
 };
 
 export interface UserProfile {
@@ -24,6 +25,7 @@ export interface UserProfile {
   middle_name?: null | string;
   full_name: string;
   email: string;
+  user_name: string;
   account_type: UserType;
   gender: "male" | "female";
 }

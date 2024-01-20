@@ -6,11 +6,19 @@ import { useNavigate } from "react-router-dom";
 // import logo from "../asset/landing-page-icons/logo.png";
 // import CustomButton from "../components/CustomButton";
 import { SendTimeExtensionOutlined } from "@mui/icons-material";
-import { useAppSelector } from "../redux/store";
+import { useAppSelector, useAppDispatch } from "../redux/store";
+import { logoutUser } from "../redux/slices/auth/auth.reducer";
 
 const LandingPage = () => {
-  const { auth } = useAppSelector((state) => state.auth);
+  const { auth, user } = useAppSelector((state) => state.auth);
+  console.log(user)
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/login");
+  };
   return (
     <Box
       sx={{
@@ -42,8 +50,8 @@ const LandingPage = () => {
         <Grid item>
           <Typography variant="h4" sx={{ paddingRight: "1rem" }}>
             {auth
-              ? "looks like you are logged In"
-              : "Have Started but henever gell, just go and check authentication screen"}
+              ? `Looks like you are logged in, ${user?.user_name}`
+              : "You haven't logged in yet, please go and check the authentication screen"}
           </Typography>
         </Grid>
         <Grid item>
@@ -51,7 +59,7 @@ const LandingPage = () => {
             <Button
               variant="contained"
               endIcon={<SendTimeExtensionOutlined />}
-              onClick={() => navigate("/login")}
+              onClick={handleLogout}
             >
               Log out
             </Button>
