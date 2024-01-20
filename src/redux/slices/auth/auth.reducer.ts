@@ -39,6 +39,7 @@ export const authSlice = createSlice({
     },
     logoutUser(state) {
       localStorage.removeItem("token");
+      localStorage.removeItem("loginUserType");
       state.auth = false;
       state.user = undefined;
       state.loginUserType = undefined;

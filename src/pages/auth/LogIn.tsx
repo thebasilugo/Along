@@ -52,7 +52,8 @@ const LogIn = () => {
       resetForm();
     }
     if ("error" in response) {
-      const errMsg = response.error;
+      //@ts-ignore
+      const errMsg = response.error.error;
       toast.error(errMsg as ToastContent);
     }
   };
