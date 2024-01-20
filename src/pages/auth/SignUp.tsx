@@ -43,7 +43,7 @@ const SignUp = () => {
     const { name, email, password, user_name } = values;
     const payload = {
       name: name,
-      user: user_name,
+      user_name: user_name,
       email: email,
       password: password,
       account_type: "user",
