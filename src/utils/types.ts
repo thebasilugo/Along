@@ -13,6 +13,7 @@ export interface ForgotPassWordProps {
 
 export interface SignUpProps {
   name: string;
+  user_name: string;
   email: string;
   password: string;
   confirm_password: string;

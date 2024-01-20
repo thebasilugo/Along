@@ -16,8 +16,7 @@ import HorizontalTextDivider from "../../components/HorizontalTextDivider";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpSchema } from "../../components/validation/ValidationSchema";
 import { useRegisterMutation } from "../../redux/api/authSlice";
-// import { useAppDispatch } from "../../redux/store";
-import { toast, ToastContent } from "react-toastify";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   // const dispatch = useAppDispatch();
@@ -31,6 +30,7 @@ const SignUp = () => {
   };
   const intialValues: SignUpProps = {
     name: "",
+    user_name: "",
     email: "",
     password: "",
     confirm_password: "",
@@ -40,16 +40,18 @@ const SignUp = () => {
     values: SignUpProps,
     { resetForm }: FormikHelpers<SignUpProps>
   ): Promise<void> => {
-    const { name, email, password } = values;
+    const { name, email, password, user_name } = values;
     const payload = {
       name: name,
+      user: user_name,
       email: email,
       password: password,
+      account_type: "user",
     };
     const response = await register(payload);
     if ("data" in response) {
-      const { msg } = response.data;
-      toast.success(msg as ToastContent);
+      // const { msg } = response.data;
+      toast.success("sign-up successfull, kinldy login now");
       navigate("/login");
       resetForm();
     }
@@ -84,6 +86,9 @@ const SignUp = () => {
               >
                 <Form>
                   <Grid item container flexDirection={"column"} gap={3}>
+                    <Grid item xs={12}>
+                      <FormikControl name="user_name" placeholder="User Name" />
+                    </Grid>
                     <Grid item xs={12}>
                       <FormikControl name="name" placeholder="Full Name" />
                     </Grid>

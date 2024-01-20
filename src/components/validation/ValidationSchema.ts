@@ -14,6 +14,7 @@ export const LoginSchema = object({
 });
 
 export const SignUpSchema = object({
+  user_name: string().required("Required"),
   name: string().required("Required"),
   email: string()
     .required("Email is required")
