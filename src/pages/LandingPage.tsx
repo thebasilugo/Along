@@ -17,7 +17,6 @@ const LandingPage = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
         width: "100%",
         // background: "black",
       }}
@@ -26,6 +25,7 @@ const LandingPage = () => {
         item
         container
         padding={2}
+        xs={12}
         sx={{
           flexDirection: { xs: "column", sm: "row" },
           gap: "2rem",
