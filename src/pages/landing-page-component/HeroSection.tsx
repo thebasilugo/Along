@@ -27,12 +27,18 @@ const HeroSection = () => {
           textAlign={"center"}
           sx={{ color: "#fff" }}
         >
-          {auth
-            ? ` EVERYWHERE <span style={{ color: '#01623b' }}>${
-                user && user?.user_name
-              }</span>`
-            : "Everywhere"}
+          EVERYWHERE
         </Typography>
+        {auth && (
+          <Typography
+            fontWeight={600}
+            fontSize={{ xs: "3rem", sm: "7rem" }}
+            textAlign={"center"}
+            sx={{ color: "#fff" }}
+          >
+            {auth ? user && user?.user_name : null}
+          </Typography>
+        )}
       </Grid>
     </Grid>
   );
