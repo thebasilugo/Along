@@ -10,7 +10,7 @@ function App() {
   const navigate = useNavigate();
   return (
     <ThemeProvider theme={muiTheme}>
-      <Grid item container xs={12}>
+      <Grid item container>
         <ErrorBoundary
           FallbackComponent={ErrorFallback}
           onReset={() => navigate("/")}

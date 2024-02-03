@@ -84,7 +84,7 @@ const LogIn = () => {
             gap={2}
           >
             <Grid item sx={{ width: "100%" }}>
-              <Typography variant="h2" color={"black"} fontWeight={600}>
+              <Typography variant="h1" color={"black"} fontWeight={600}>
                 Welcome back!
               </Typography>
             </Grid>

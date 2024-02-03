@@ -68,7 +68,6 @@ const SignUp = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "10rem",
         }}
       >
         <Grid item container flexDirection={"column"} gap={2}>

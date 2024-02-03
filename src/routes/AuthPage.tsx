@@ -1,8 +1,9 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Link, Outlet, Route, Routes } from "react-router-dom";
 import authBg from "../../src/asset/images/auth.png";
 import { Avatar, Grid } from "@mui/material";
 import { lazy } from "react";
-const LandingPage = lazy(() => import("../pages/LandingPage"));
+import LandingPageNew from "../pages/LandingPageNew";
+// const LandingPage = lazy(() => import("../pages/LandingPage"));
 const LogIn = lazy(() => import("../pages/auth/LogIn"));
 const SignUp = lazy(() => import("../pages/auth/SignUp"));
 const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassWord"));
@@ -30,7 +31,7 @@ const AuthLayout = () => {
           position: "fixed",
           left: 0,
           bottom: 0,
-          width: "40%",
+          width: "50%",
           mr: "auto",
           top: 0,
         }}
@@ -38,22 +39,23 @@ const AuthLayout = () => {
         flex={1}
         p={0}
       >
-        <Avatar
-          src={authBg}
-          variant="square"
-          sx={{
-            height: "100%",
-            width: "100%",
-            objectFit: "contain",
-          }}
-        />
+        <Link to={"/"}>
+          <Avatar
+            src={authBg}
+            variant="square"
+            sx={{
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+            }}
+          />
+        </Link>
       </Grid>
       <Grid
         item
         sx={{
           marginLeft: {
-            sm: "40%",
-            lg: "60%",
+            sm: "50%",
           },
           height: "100%",
           bottom: 0,
@@ -64,7 +66,7 @@ const AuthLayout = () => {
         <Grid
           item
           sx={{
-            width: { xs: "80" },
+            width: { xs: "80%" },
             mx: "auto",
             height: "100%",
             p: { md: 5, sm: 2, xs: 3 },
@@ -87,7 +89,7 @@ const AuthPage = () => {
         <Route path="verify-email" element={<VerifyEmail />} />
         <Route path="reset-password" element={<ResetPassword />} />
       </Route>
-      <Route index element={<LandingPage />} />
+      <Route index element={<LandingPageNew />} />
     </Routes>
   );
 };

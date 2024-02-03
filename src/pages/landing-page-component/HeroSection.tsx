@@ -1,0 +1,41 @@
+import { Grid, Typography } from "@mui/material";
+import { useAppSelector } from "../../redux/store";
+const HeroSection = () => {
+  const { auth, user } = useAppSelector((state) => state.auth);
+  return (
+    <Grid
+      item
+      container
+      flexDirection={"row"}
+      justifyContent={"center"}
+      width={"100%"}
+      padding={2}
+      marginTop={3}
+    >
+      <Grid item>
+        <Typography
+          fontWeight={600}
+          fontSize={{ xs: "3rem", sm: "7rem" }}
+          textAlign={"center"}
+          sx={{ color: "#01623b" }}
+        >
+          ALONG
+        </Typography>
+        <Typography
+          fontWeight={600}
+          fontSize={{ xs: "3rem", sm: "7rem" }}
+          textAlign={"center"}
+          sx={{ color: "#fff" }}
+        >
+          {auth
+            ? ` EVERYWHERE <span style={{ color: '#01623b' }}>${
+                user && user?.user_name
+              }</span>`
+            : "Everywhere"}
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
+export default HeroSection;
