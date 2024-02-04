@@ -28,7 +28,7 @@ const HeroSection = () => {
         >
           EVERYWHERE
         </Typography>
-        {!auth && (
+        {auth && (
           <Typography
             fontWeight={600}
             fontSize={{ xs: "3rem", sm: "4rem" }}
@@ -36,7 +36,6 @@ const HeroSection = () => {
             sx={{ color: "#fff" }}
           >
             {auth ? user && user?.user_name : null}
-   
           </Typography>
         )}
       </Grid>
