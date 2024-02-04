@@ -33,7 +33,7 @@ const HeroSection = () => {
             fontWeight={600}
             fontSize={{ xs: "3rem", sm: "4rem" }}
             textAlign={"center"}
-            sx={{ color: "#fff" }}
+            sx={{ color: "#01623b" }}
           >
             {auth ? user && user?.user_name : null}
           </Typography>
