@@ -16,7 +16,7 @@ const CarAndImages = () => {
       justifyContent={"center"}
       width={"100%"}
       padding={2}
-      marginTop={15}
+      marginTop={10}
       //   sx={{
       //     display: { xs: "none", sm: "block" },
       //   }}

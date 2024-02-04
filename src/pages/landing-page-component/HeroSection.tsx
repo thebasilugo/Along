@@ -10,12 +10,11 @@ const HeroSection = () => {
       justifyContent={"center"}
       width={"100%"}
       padding={2}
-      marginTop={3}
     >
       <Grid item>
         <Typography
           fontWeight={600}
-          fontSize={{ xs: "3rem", sm: "7rem" }}
+          fontSize={{ xs: "3rem", sm: "6rem" }}
           textAlign={"center"}
           sx={{ color: "#01623b" }}
         >
@@ -23,20 +22,21 @@ const HeroSection = () => {
         </Typography>
         <Typography
           fontWeight={600}
-          fontSize={{ xs: "3rem", sm: "7rem" }}
+          fontSize={{ xs: "3rem", sm: "6rem" }}
           textAlign={"center"}
           sx={{ color: "#fff" }}
         >
           EVERYWHERE
         </Typography>
-        {auth && (
+        {!auth && (
           <Typography
             fontWeight={600}
-            fontSize={{ xs: "3rem", sm: "7rem" }}
+            fontSize={{ xs: "3rem", sm: "4rem" }}
             textAlign={"center"}
             sx={{ color: "#fff" }}
           >
             {auth ? user && user?.user_name : null}
+   
           </Typography>
         )}
       </Grid>

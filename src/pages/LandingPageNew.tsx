@@ -31,13 +31,7 @@ const LandingPageNew = () => {
           background: "linear-gradient(to right bottom, #fff, #add9c8)",
         }}
       >
-        <Grid
-          item
-          width={"90%"}
-          marginX={"auto"}
-          flexDirection={"column"}
-          gap={3}
-        >
+        <Grid item width={"90%"} marginX={"auto"} flexDirection={"column"}>
           <Grid
             item
             container
@@ -46,7 +40,7 @@ const LandingPageNew = () => {
             alignItems={"center"}
             width={"100%"}
             padding={2}
-            marginTop={3}
+            marginTop={2}
           >
             <Grid
               item
