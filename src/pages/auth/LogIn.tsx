@@ -47,7 +47,7 @@ const LogIn = () => {
     if ("data" in response) {
       const { msg } = response.data;
       dispatch(loginUserSuccess(response.data));
-      localStorage.setItem('userData', JSON.stringify(response.data));
+      localStorage.setItem('userData', JSON.stringify(response.data?.user));
       toast.success(msg as ToastContent);
       navigate("/");
       resetForm();

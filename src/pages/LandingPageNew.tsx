@@ -113,7 +113,7 @@ const LandingPageNew = () => {
                     textTransform: "initial",
                     fontSize: "1.5rem",
                   }}
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/auth/login")}
                 />
               )}
             </Grid>

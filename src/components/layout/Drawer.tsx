@@ -1,13 +1,10 @@
 import { useState, Suspense } from "react";
-import image from "assets/images/msspace.png";
 import {
-  Divider,
   CssBaseline,
   Box,
   Drawer,
   IconButton,
   AppBar,
-  Avatar,
   Toolbar,
   Grid,
 } from "@mui/material";
@@ -34,7 +31,7 @@ export default function SideDrawer(props: Props) {
 
   const drawer = (
     <Grid item container flexDirection={"column"} sx={{ height: "100vh" }}>
-      <AppBar
+      {/* <AppBar
         elevation={0}
         position="fixed"
         sx={{ width: drawerWidth, left: 0, bgcolor: "#fff" }}
@@ -48,18 +45,21 @@ export default function SideDrawer(props: Props) {
             alignItems={"center"}
           >
             <Grid item flex={1}>
-              <Avatar
-                src={image}
-                alt="msspace logo"
-                variant="square"
-                sx={{ width: "100%", height: "100%", objectFit: "contain" }}
-              />
+              <Box sx={{ width: "1rem", height: "1rem" }}>
+                <img
+                  src={image}
+                  alt="image"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
             </Grid>
           </Grid>
         </Toolbar>
-        <Divider />
-      </AppBar>
-
+      </AppBar> */}
       <SideBar handleDrawerToggle={handleDrawerToggle} />
     </Grid>
   );
@@ -89,9 +89,7 @@ export default function SideDrawer(props: Props) {
           >
             <MenuIcon fontSize="large" />
           </IconButton>
-          {/* <Header user={user} /> */}
         </Toolbar>
-        <Divider />
       </AppBar>
       <Box
         component="nav"
@@ -136,16 +134,18 @@ export default function SideDrawer(props: Props) {
           flexGrow: 1,
           p: 3,
           height: "100%",
-          width: { xs: "100%", md: `calc(100% - ${drawerWidth}px)` },
+          width: { xs: "100%", md: `calc(100% - ${drawerWidth}px)`, marginTop:'6rem' },
         }}
       >
-        <Toolbar />
+        {/* <Toolbar /> */}
         <ErrorBoundary
           FallbackComponent={OrganizationErrorFallback}
           onReset={() => navigate("/")}
         >
           <Suspense fallback={<Loader />}>
-            <Outlet />{" "}
+            <Grid item container bgcolor={"gray"} padding={'1rem'} borderRadius={"1rem"}>
+              <Outlet />
+            </Grid>
           </Suspense>
         </ErrorBoundary>
       </Box>

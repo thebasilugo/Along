@@ -1,7 +1,6 @@
 import { useState, FC, useLayoutEffect } from "react";
 import {
   List,
-  Divider,
   Grid,
   Toolbar,
   ListItemText,
@@ -12,17 +11,20 @@ import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 import Profile from "./Profile";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { errorMessage } from 'utils';
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import { DeveloperBoardOffOutlined, DeveloperMode } from "@mui/icons-material";
 import { HomeRepairService } from "@mui/icons-material";
+import { useAppDispatch } from "../../redux/store";
+import { logoutUser } from "../../redux/slices/auth/auth.reducer";
 
 interface HeaderProps {
   handleDrawerToggle: () => void;
 }
 
 const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/");
+  };
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
@@ -47,38 +49,46 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
 
   const arr = [
     {
-      title: "Getting Started",
+      title: "Dashboard",
       Icon: <HomeRepairService />,
-      route: "/getting-started",
+      route: "/dashboard",
     },
 
     {
-      title: "Profile",
+      title: "Blog",
       Icon: <HomeRepairService />,
-      route: "/profile",
+      route: "/blog",
+    },
+    {
+      title: "Create",
+      Icon: <HomeRepairService />,
+      route: "/create-post",
+    },
+    {
+      title: "Stats",
+      Icon: <HomeRepairService />,
+      route: "/stats",
+    },
+    {
+      title: "Settings",
+      Icon: <HomeRepairService />,
+      route: "/settings",
     },
   ];
-  const [open, setOpen] = useState(true);
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
-  const environment = import.meta.env.DEV;
+  // const environment = import.meta.env.DEV;
 
   return (
     <Grid
       item
       container
       flexDirection={"column"}
-      sx={{ flex: 1, bgcolor: "#F5F5F5" }}
+      sx={{ flex: 1, marginTop: "6.5rem" }}
     >
-      <Toolbar />
       <Toolbar disableGutters>
         <Profile />
-        <Divider flexItem />
       </Toolbar>
       <List
-        color="primary"
         disablePadding
         dense
         sx={{
@@ -110,54 +120,12 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
               </ListItemButton>
             );
           })}
-
-          {/* Developers */}
-          {environment && (
-            <>
-              <ListItemButton
-                onClick={handleClick}
-                sx={{ maxHeight: "4.5rem" }}
-              >
-                <ListItemIcon>
-                  <DeveloperMode />
-                </ListItemIcon>
-                <ListItemText primary="Developers" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton
-                    sx={{ pl: 4, maxHeight: "4.5rem", mb: 1 }}
-                    onClick={handleNavigate("/ahmed")}
-                    selected={active === "/ahmed"}
-                  >
-                    <ListItemIcon>
-                      <DeveloperBoardOffOutlined />
-                    </ListItemIcon>
-                    <ListItemText primary="Ahmed" />
-                  </ListItemButton>
-
-                  <ListItemButton
-                    sx={{ pl: 4, maxHeight: "4.5rem", mb: 1 }}
-                    onClick={handleNavigate("/isiaka")}
-                    selected={active === "/isiaka"}
-                  >
-                    <ListItemIcon>
-                      <DeveloperBoardOffOutlined />
-                    </ListItemIcon>
-                    <ListItemText primary="Isiaka" />
-                  </ListItemButton>
-                </List>
-              </Collapse>
-            </>
-          )}
-
           <Grid item container alignItems={"flex-end"} sx={{ mt: "auto" }}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText primary={"Logout"} />
+              <ListItemText primary={"Logout"} onClick={handleLogout} />
             </ListItemButton>
           </Grid>
         </>

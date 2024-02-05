@@ -24,8 +24,8 @@ export const authSlice = createSlice({
     loginUserType: localStorage.getItem("loginUserType"),
   } as InitialStateProp,
   reducers: {
-    getUserDetails(state, details) {
-      state.user = details.payload;
+    getUserDetails(state, action) {
+      state.user = action.payload;
     },
     loginUserSuccess(state, details) {
       setToken(details?.payload.token);
@@ -40,6 +40,7 @@ export const authSlice = createSlice({
     logoutUser(state) {
       localStorage.removeItem("token");
       localStorage.removeItem("loginUserType");
+      localStorage.removeItem("userData");
       state.auth = false;
       state.user = undefined;
       state.loginUserType = undefined;

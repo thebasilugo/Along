@@ -20,6 +20,7 @@ export type LogInResponse = {
 
 export interface UserProfile {
   id: number;
+  name?: string;
   first_name: string;
   last_name: string;
   middle_name?: null | string;
