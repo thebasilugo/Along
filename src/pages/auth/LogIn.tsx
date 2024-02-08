@@ -228,7 +228,7 @@ const LogIn = () => {
                       <Typography variant="h6" fontWeight={400} color={"black"}>
                         Don’t have an account?{" "}
                       </Typography>
-                      <Link to={"/sign-up"}>
+                      <Link to={"/auth/sign-up"}>
                         <Typography
                           variant="h6"
                           color={"blue"}

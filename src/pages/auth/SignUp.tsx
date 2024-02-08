@@ -52,7 +52,7 @@ const SignUp = () => {
     if ("data" in response) {
       // const { msg } = response.data;
       toast.success("sign-up successfull, kindly login now");
-      navigate("/login");
+      navigate("/auth/login");
       resetForm();
     }
     if ("error" in response) {
@@ -226,7 +226,7 @@ const SignUp = () => {
                       <Typography variant="h6" fontWeight={400} color={"black"}>
                         Already have an account?{" "}
                       </Typography>
-                      <Link to={"/login"}>
+                      <Link to={"/auth/sign-up"}>
                         <Typography
                           variant="h6"
                           color={"blue"}
