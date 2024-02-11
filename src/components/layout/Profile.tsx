@@ -1,11 +1,13 @@
 import { Avatar, Grid, Typography } from "@mui/material";
 import { useAppSelector } from "../../redux/store";
+import passPort from "../../asset/images/passPort.jpg";
 const Profile = () => {
   const { user } = useAppSelector((state) => state.auth);
   return (
     <Grid item container paddingX={3} flexDirection={"column"} gap={2}>
       <Grid item>
         <Avatar
+          src={passPort}
           alt={"image"}
           variant="rounded"
           sx={{ bgcolor: "#fff", color: "#333", height: "8rem", width: "8rem" }}

@@ -7,14 +7,11 @@ const AllRoutes = lazy(() => import("../routes/Pages"));
 
 const PrivateRoutes: FC = () => {
   const dispatch = useAppDispatch();
-
-  // Inside PrivateRoutes component
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
     const userData = storedUserData ? JSON.parse(storedUserData) : null;
 
     if (userData) {
-      // Dispatch action with user details
       dispatch(getUserDetails(userData));
     }
   }, [dispatch]);

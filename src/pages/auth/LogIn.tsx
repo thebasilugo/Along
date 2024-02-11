@@ -150,7 +150,7 @@ const LogIn = () => {
                         />
                       </Grid>
                       <Grid item>
-                        <Link to={"/forgot-password"}>
+                        <Link to={"/auth/forgot-password"}>
                           <Button
                             variant="text"
                             sx={{

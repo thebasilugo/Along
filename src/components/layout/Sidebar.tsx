@@ -109,7 +109,7 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
               <ListItemButton
                 dense
                 key={index}
-                sx={{ maxHeight: "4.5rem" }}
+                sx={{ maxHeight: "4.5rem", borderRadius: "2rem", boxShadow:'2rem' }}
                 onClick={handleNavigate(route)}
                 selected={active === route}
               >

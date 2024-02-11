@@ -11,7 +11,7 @@ export const authSlice = api.injectEndpoints({
           method: "POST",
           body: body,
         }),
-        invalidatesTags: ["user"],
+        invalidatesTags: ["user", "users"],
         transformResponse: (response: LogInResponse) => response,
         transformErrorResponse: (error: FetchBaseQueryError) => error.data,
       }

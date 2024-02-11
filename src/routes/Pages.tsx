@@ -2,11 +2,11 @@ import { lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 const AdminDrawer = lazy(() => import("../components/layout/Drawer"));
-const AdminDashboard = lazy(() => import("../pages/Admin/Dashboard"));
+const AdminDashboard = lazy(() => import("../pages/Admin/dashboard/Dashboard"));
 const Blog = lazy(() => import("../pages/Admin/blog/Blog"));
 const NotFound = lazy(() => import("../pages/Not-found/NotFound"));
 const Stats = lazy(() => import("../pages/Admin/stats"));
-const CreatePost = lazy(() => import("../pages/Admin/post/CreatePost"));
+const CreatePost = lazy(() => import("../pages/Admin/post/Post"));
 const Settings = lazy(() => import("../pages/Admin/settings"));
 
 const AdminRoutes = () => {

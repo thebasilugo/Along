@@ -114,6 +114,7 @@ export default function SideDrawer(props: Props) {
         >
           {drawer}
         </Drawer>
+        {/* disabled the border color here */}
         <Drawer
           variant="permanent"
           sx={{
@@ -121,6 +122,7 @@ export default function SideDrawer(props: Props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              border: "none",
             },
           }}
           open
@@ -134,7 +136,11 @@ export default function SideDrawer(props: Props) {
           flexGrow: 1,
           p: 3,
           height: "100%",
-          width: { xs: "100%", md: `calc(100% - ${drawerWidth}px)`, marginTop:'6rem' },
+          width: {
+            xs: "100%",
+            md: `calc(100% - ${drawerWidth}px)`,
+            marginTop: "6rem",
+          },
         }}
       >
         {/* <Toolbar /> */}
@@ -143,7 +149,16 @@ export default function SideDrawer(props: Props) {
           onReset={() => navigate("/")}
         >
           <Suspense fallback={<Loader />}>
-            <Grid item container bgcolor={"gray"} padding={'1rem'} borderRadius={"1rem"}>
+            <Grid
+              item
+              container
+              padding={"1rem"}
+              borderRadius={"5rem"}
+              height={"100vh"}
+              boxShadow={3}
+              paddingX={6}
+              paddingY={4}
+            >
               <Outlet />
             </Grid>
           </Suspense>

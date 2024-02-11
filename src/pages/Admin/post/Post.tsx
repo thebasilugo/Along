@@ -1,15 +1,18 @@
 import { Grid } from "@mui/material";
 import Header from "../dashboard/Header";
-import Content from "./Content";
-const Blog = () => {
+import CreatePost from "./CreatePost";
+import PublishedPost from "./PublishedPost";
+
+const Post = () => {
   return (
     <>
       <Grid item width={"100%"}>
         <Header />
-        <Content />
+        <CreatePost />
+        <PublishedPost />
       </Grid>
     </>
   );
 };
 
-export default Blog;
+export default Post;

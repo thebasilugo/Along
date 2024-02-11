@@ -1,6 +1,6 @@
+import CssBaseline from "@mui/material/CssBaseline";
 import ReactDOM from "react-dom/client";
 import AppRoutes from "./routes/AppRoutes";
-import CssBaseline from "@mui/material/CssBaseline";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";

@@ -1,4 +1,5 @@
-import { string, object } from "yup";
+import { string, object, mixed } from "yup";
+const acceptedImageFormats = ["image/jpeg", "image/png"];
 
 export const LoginSchema = object({
   email: string()
@@ -26,4 +27,23 @@ export const SignUpSchema = object({
     .matches(/^(?=.*[A-Z])/, "Must contain at least one uppercase character")
     .matches(/^(?=.*[0-9])/, "Must contain at least one number")
     .matches(/^(?=.*[!@#%&])/, "Must contain at least one special character"),
+});
+
+export const CreatePostSchema = object({
+  title: string().required("Required"),
+  description: string().required("Required"),
+  image: mixed()
+    .test("fileSize", "File is too large. Maximum size is 8MB", (value) => {
+      // If value is undefined or null, skip the test
+      if (!value) return true;
+
+      return (value as File).size <= 8 * 1024 * 1024; // 8MB limit
+    })
+    .test("fileType", "File must be a JPEG, PNG, or GIF", (value) => {
+      // If value is undefined or null, skip the test
+      if (!value) return true;
+
+      return acceptedImageFormats.includes((value as File).type);
+    })
+    .required("Image Proof of certificate is Required"),
 });
