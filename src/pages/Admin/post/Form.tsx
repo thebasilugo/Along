@@ -27,20 +27,24 @@ const CreateForm = ({ editPostPayload, mode }: any) => {
 
   const options = [
     {
-      key: "Resturant",
-      value: "resturant",
+      key: "Parks",
+      value: "parks",
     },
     {
-      key: "Amusement park",
-      value: "amusement park",
+      key: "Resturants and cafes",
+      value: "resturant and cafes",
     },
     {
-      key: "Resort center",
-      value: "resort center",
+      key: "Hotels",
+      value: "hotels",
     },
     {
-      key: "Nysc camp",
-      value: "resturant",
+      key: "Malls",
+      value: "malls",
+    },
+    {
+      key: "Government Offices",
+      value: "governement offcies",
     },
   ];
 
@@ -51,11 +55,12 @@ const CreateForm = ({ editPostPayload, mode }: any) => {
     values: initialValuesProps,
     { resetForm }: FormikHelpers<initialValuesProps>
   ): Promise<void> => {
-    const { title, description, image } = values;
+    const { title, description, image, category } = values;
     const payload = {
       title: title,
       description: description,
       image: image ? await convertFileToBase64(image) : null,
+      category: category,
     };
 
     if (mode === "create") {

@@ -20,6 +20,7 @@ const PublishedPost = () => {
   const handleOpenConfirmation = () => setOpenConfirmation(true);
   const handleCloseConfirmation = () => setOpenConfirmation(false);
   const { data: usersPost, isLoading } = useGetPostQuery();
+  console.log(usersPost)
   if (isLoading) return <Loader />;
   const columns = ["Article Title", "Post Date", "Category", "Comments"];
 

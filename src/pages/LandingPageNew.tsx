@@ -9,16 +9,16 @@ import CarAndImages from "./landing-page-component/CarAndImages";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
 import { SendTimeExtensionOutlined } from "@mui/icons-material";
-import { useAppDispatch } from "../redux/store";
-import { logoutUser } from "../redux/slices/auth/auth.reducer";
+// import { useAppDispatch } from "../redux/store";
+// import { logoutUser } from "../redux/slices/auth/auth.reducer";
 
 const LandingPageNew = () => {
   const { auth } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    navigate("/login");
-  };
+  // const dispatch = useAppDispatch();
+  // const handleLogout = () => {
+  //   dispatch(logoutUser());
+  //   navigate("/login");
+  // };
   const navigate = useNavigate();
   return (
     <>
@@ -101,9 +101,9 @@ const LandingPageNew = () => {
                 <Button
                   variant="contained"
                   endIcon={<SendTimeExtensionOutlined />}
-                  onClick={handleLogout}
+                  onClick={() => navigate("/dashboard")}
                 >
-                  Log out
+                  Go to Dashboard
                 </Button>
               ) : (
                 <CustomButton

@@ -49,6 +49,11 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
 
   const arr = [
     {
+      title: "Home",
+      Icon: <HomeRepairService />,
+      route: "/landing-page",
+    },
+    {
       title: "Dashboard",
       Icon: <HomeRepairService />,
       route: "/dashboard",
@@ -109,7 +114,11 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
               <ListItemButton
                 dense
                 key={index}
-                sx={{ maxHeight: "4.5rem", borderRadius: "2rem", boxShadow:'2rem' }}
+                sx={{
+                  maxHeight: "4.5rem",
+                  borderRadius: "2rem",
+                  boxShadow: "2rem",
+                }}
                 onClick={handleNavigate(route)}
                 selected={active === route}
               >

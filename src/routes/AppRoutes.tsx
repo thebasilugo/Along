@@ -4,6 +4,16 @@ import { lazy } from "react";
 import { useAppSelector } from "../redux/store";
 const AuthPage = lazy(() => import("./AuthPage"));
 const PrivateRoutes = lazy(() => import("./PrivateRoutes"));
+const LandingPageNew = lazy(() => import("../pages/LandingPageNew"));
+const Parks = lazy(() => import("../pages/blog-categories/parks"));
+const GovernmentOfficies = lazy(
+  () => import("../pages/blog-categories/governement-officies")
+);
+const Hotels = lazy(() => import("../pages/blog-categories/hotels"));
+const Malls = lazy(() => import("../pages/blog-categories/malls"));
+const ResturantAndCafes = lazy(
+  () => import("../pages/blog-categories/resturants-and-cafe")
+);
 
 const AppRoutes = () => {
   const { auth } = useAppSelector((state) => state.auth);
@@ -23,6 +33,15 @@ const AppRoutes = () => {
                 <Route path="*" element={<Navigate to="/auth" />} />
               </>
             )}
+            <Route path="/landing-page" element={<LandingPageNew />} />
+            <Route path="/resturants" element={<ResturantAndCafes />} />
+            <Route path="/hotels" element={<Hotels />} />
+            <Route path="/malls" element={<Malls />} />
+            <Route path="/parks" element={<Parks />} />
+            <Route
+              path="/government-offices"
+              element={<GovernmentOfficies />}
+            />
           </Route>
         </Routes>
       </div>
