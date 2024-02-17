@@ -126,7 +126,14 @@ export default function SideDrawer(props: Props) {
             </Typography>
           </IconButton>
           <Grid item container justifyContent={"end"}>
-            <Grid item sx={{ display: "flex", alignItems: "center" }}>
+            <Grid
+              item
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                alignItems: "center",
+              }}
+            >
               <Avatar src={ahmed}></Avatar>
               <IconButton onClick={handleClick}>
                 <KeyboardArrowDownIcon
@@ -202,6 +209,8 @@ export default function SideDrawer(props: Props) {
             md: `calc(100% - ${drawerWidth}px)`,
             marginTop: "6rem",
           },
+          backgroundImage:
+            "linear-gradient(rgba(255, 255, 255, 1), rgba(0, 237, 0, 0.2))",
         }}
       >
         {/* <Toolbar /> */}

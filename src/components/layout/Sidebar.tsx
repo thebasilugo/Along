@@ -11,9 +11,14 @@ import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 import Profile from "./Profile";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { errorMessage } from 'utils';
-import { HomeRepairService } from "@mui/icons-material";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { useAppDispatch } from "../../redux/store";
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import { logoutUser } from "../../redux/slices/auth/auth.reducer";
+import CameraRollIcon from "@mui/icons-material/CameraRoll";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import HomeIcon from "@mui/icons-material/Home";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 interface HeaderProps {
   handleDrawerToggle: () => void;
@@ -50,33 +55,33 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
   const arr = [
     {
       title: "Home",
-      Icon: <HomeRepairService />,
+      Icon: <HomeIcon />,
       route: "/landing-page",
     },
     {
       title: "Dashboard",
-      Icon: <HomeRepairService />,
+      Icon: <DashboardIcon />,
       route: "/dashboard",
     },
 
     {
       title: "Blog",
-      Icon: <HomeRepairService />,
+      Icon: <CameraRollIcon />,
       route: "/blog",
     },
     {
       title: "Create",
-      Icon: <HomeRepairService />,
+      Icon: <NoteAddIcon />,
       route: "/create-post",
     },
     {
       title: "Stats",
-      Icon: <HomeRepairService />,
+      Icon: <BarChartIcon />,
       route: "/stats",
     },
     {
       title: "Settings",
-      Icon: <HomeRepairService />,
+      Icon: <SettingsIcon />,
       route: "/settings",
     },
   ];
@@ -88,7 +93,12 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
       item
       container
       flexDirection={"column"}
-      sx={{ flex: 1, marginTop: "6.5rem" }}
+      sx={{
+        flex: 1,
+        marginTop: "6.5rem",
+        backgroundImage: "linear-gradient(rgba(255, 255, 255, 1), rgba(0, 237, 0, 0.2))"
+
+      }}
     >
       <Toolbar disableGutters>
         <Profile />
@@ -109,7 +119,7 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
       >
         <>
           {arr.map((item, index: number) => {
-            const { route, title } = item;
+            const { route, title, Icon } = item;
             return (
               <ListItemButton
                 dense
@@ -122,9 +132,7 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
                 onClick={handleNavigate(route)}
                 selected={active === route}
               >
-                <ListItemIcon>
-                  <HomeRepairService />
-                </ListItemIcon>
+                <ListItemIcon>{Icon}</ListItemIcon>
                 <ListItemText primary={title} />
               </ListItemButton>
             );
