@@ -1,4 +1,4 @@
-import { string, object, mixed } from "yup";
+import { string, object, mixed, boolean } from "yup";
 const acceptedImageFormats = ["image/jpeg", "image/png"];
 
 export const LoginSchema = object({
@@ -27,6 +27,10 @@ export const SignUpSchema = object({
     .matches(/^(?=.*[A-Z])/, "Must contain at least one uppercase character")
     .matches(/^(?=.*[0-9])/, "Must contain at least one number")
     .matches(/^(?=.*[!@#%&])/, "Must contain at least one special character"),
+  terms_and_policy: boolean().oneOf(
+    [true],
+    "Terms and conditions must be accepted"
+  ),
 });
 
 export const CreatePostSchema = object({

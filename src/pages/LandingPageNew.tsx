@@ -9,6 +9,7 @@ import CarAndImages from "./landing-page-component/CarAndImages";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
 import { SendTimeExtensionOutlined } from "@mui/icons-material";
+import SearchComponent from "../components/SearchComponent";
 // import { useAppDispatch } from "../redux/store";
 // import { logoutUser } from "../redux/slices/auth/auth.reducer";
 
@@ -59,9 +60,9 @@ const LandingPageNew = () => {
                 display: { xs: "none", sm: "block" },
               }}
             >
-              <Grid item container flexDirection={"row"} gap={9}>
+              <Grid item container flexDirection={"row"} gap={4}>
                 <Grid item>
-                  <Link to={"/"}>
+                  <Link to={"#"}>
                     <Button
                       sx={{
                         textTransform: "initial",
@@ -74,7 +75,7 @@ const LandingPageNew = () => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link to={"/"}>
+                  <Link to={"#"}>
                     <Button
                       sx={{
                         textTransform: "initial",
@@ -89,6 +90,9 @@ const LandingPageNew = () => {
                 <Grid item>
                   <BasicMenu />
                 </Grid>
+                <Grid item>
+                  <SearchComponent />
+                </Grid>
               </Grid>
             </Grid>
             <Grid
@@ -102,6 +106,7 @@ const LandingPageNew = () => {
                   variant="contained"
                   endIcon={<SendTimeExtensionOutlined />}
                   onClick={() => navigate("/dashboard")}
+                  sx={{ backgroundColor: "#01623b" }}
                 >
                   Go to Dashboard
                 </Button>
@@ -117,6 +122,7 @@ const LandingPageNew = () => {
                 />
               )}
             </Grid>
+
             <Grid
               item
               sx={{

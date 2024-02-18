@@ -9,6 +9,7 @@ const SignUp = lazy(() => import("../pages/auth/SignUp"));
 const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassWord"));
 const VerifyEmail = lazy(() => import("../pages/auth/VerifyEmail"));
 const ResetPassword = lazy(() => import("../pages/auth/ResetPassword"));
+const TermsAndCondition = lazy(() => import("../pages/auth/TermsandCondition"));
 
 const AuthLayout = () => {
   return (
@@ -85,6 +86,7 @@ const AuthPage = () => {
       <Route element={<AuthLayout />}>
         <Route path="login" element={<LogIn />} />
         <Route path="sign-up" element={<SignUp />} />
+        <Route path="terms-and-condition" element={<TermsAndCondition />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="verify-email" element={<VerifyEmail />} />
         <Route path="reset-password" element={<ResetPassword />} />

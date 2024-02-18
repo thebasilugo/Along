@@ -18,4 +18,5 @@ export interface SignUpProps {
   password: string;
   confirm_password: string;
   terms_and_policy: boolean;
+  account_type: string;
 }

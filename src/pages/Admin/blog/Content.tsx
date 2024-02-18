@@ -4,6 +4,7 @@ import DepartureBoardIcon from "@mui/icons-material/DepartureBoard";
 import FadingCardContent from "./FadingCardContent";
 import CustomButton from "../../../components/CustomButton";
 import MasonryImageList from "./MansoryImages";
+// import FadingCardContent from "../../test-ground";
 
 const Content = () => {
   return (
@@ -12,6 +13,7 @@ const Content = () => {
         <Grid item xs={12} sm={8.2}>
           <CustomCard sx={{ backgroundColor: "#E6F7FF", height: "30rem" }}>
             <FadingCardContent />
+            {/* <FadingCardContent /> */}
           </CustomCard>
         </Grid>
         <Grid item xs={12} sm={3.5}>
@@ -131,7 +133,8 @@ const Content = () => {
                 </Grid>
                 <Grid item>
                   <CustomButton
-                    title="Start exploring"
+                    // title="Start exploring"
+                    title="coming soon..."
                     sx={{
                       paddingX: "3rem",
                       paddingY: "2rem",

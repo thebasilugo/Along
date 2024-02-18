@@ -10,7 +10,6 @@ import {
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 import Profile from "./Profile";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { errorMessage } from 'utils';
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useAppDispatch } from "../../redux/store";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
@@ -19,12 +18,14 @@ import CameraRollIcon from "@mui/icons-material/CameraRoll";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import HomeIcon from "@mui/icons-material/Home";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import { getUserType } from "../../utils";
 
 interface HeaderProps {
   handleDrawerToggle: () => void;
 }
 
 const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
+  const accountType = getUserType();
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -51,7 +52,6 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
     setActive(extractFirstPathSegment());
     //eslint-disable-next-line
   }, [location.pathname]);
-
   const arr = [
     {
       title: "Home",
@@ -69,16 +69,25 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
       Icon: <CameraRollIcon />,
       route: "/blog",
     },
-    {
-      title: "Create",
-      Icon: <NoteAddIcon />,
-      route: "/create-post",
-    },
-    {
-      title: "Stats",
-      Icon: <BarChartIcon />,
-      route: "/stats",
-    },
+    ...(accountType !== "user"
+      ? [
+          {
+            title: "Create",
+            Icon: <NoteAddIcon />,
+            route: "/create-post",
+          },
+        ]
+      : []),
+    ...(accountType !== "user"
+      ? [
+          {
+            title: "Stats",
+            Icon: <BarChartIcon />,
+            route: "/stats",
+          },
+        ]
+      : []),
+
     {
       title: "Settings",
       Icon: <SettingsIcon />,
@@ -96,8 +105,8 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
       sx={{
         flex: 1,
         marginTop: "6.5rem",
-        backgroundImage: "linear-gradient(rgba(255, 255, 255, 1), rgba(0, 237, 0, 0.2))"
-
+        backgroundImage:
+          "linear-gradient(rgba(255, 255, 255, 1), rgba(0, 237, 0, 0.2))",
       }}
     >
       <Toolbar disableGutters>

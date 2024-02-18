@@ -75,3 +75,87 @@ body {
 .iconBounce {
   animation: bounce 5s infinite;
 }
+
+@keyframes fade1 {
+  0% {
+    opacity: 1;
+  }
+  22% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  88% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade2 {
+  0% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0;
+  }
+  88% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade3 {
+  0% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animation-element1 {
+  animation: fade1 2s ease-in-out infinite;
+}
+
+.animation-element2 {
+  animation: fade2 2s ease-in-out infinite;
+}
+
+.animation-element3 {
+  animation: fade3 2s ease-in-out infinite;
+}
