@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
   prepareHeaders: (headers, { endpoint, getState }) => {
     const {
-      auth: { verifyUserToken, authToken },
+      auth: { verifyUserToken, authToken, session },
     } = getState() as RootState;
     headers.append("Accept", "application/json");
     if (endpoint === "verifyEmail") {
@@ -23,3 +23,10 @@ export const api = createApi({
   tagTypes: ["user", "post", "users"],
   endpoints: () => ({}),
 });
+// if (
+//   endpoint === "createPost" ||
+//   endpoint === "updatePost" ||
+//   endpoint === "deletePost"
+// ) {
+//   headers.append("AUTHORIZATION", `Bearer ${session}`);
+// }

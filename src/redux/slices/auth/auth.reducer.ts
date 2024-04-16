@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserType, UserProfile } from "../../api/type";
+import { UserType, UserProfile, Session } from "../../api/type";
 import { setToken } from "../../../utils";
 
 interface InitialStateProp {
@@ -10,6 +10,7 @@ interface InitialStateProp {
   auth: boolean;
   verifyUserToken: string | null;
   authToken: string | null;
+  session: Session | null;
 }
 
 export const authSlice = createSlice({
@@ -22,6 +23,7 @@ export const authSlice = createSlice({
     verifyUserToken: localStorage.getItem("verifyUserToken"),
     authToken: localStorage.getItem("token"),
     loginUserType: localStorage.getItem("loginUserType"),
+    session: localStorage.getItem("session"),
   } as InitialStateProp,
   reducers: {
     getUserDetails(state, action) {
@@ -32,6 +34,7 @@ export const authSlice = createSlice({
       state.auth = true;
       state.user = details?.payload?.user;
       state.authToken = details?.payload.token;
+      state.session = details?.payload.session?.tokenId;
       localStorage.setItem("loginUserType", details.payload.user.account_type);
       state.loginUserType = details?.payload.user.account_type;
       localStorage.removeItem("verifyUserToken");
@@ -41,6 +44,7 @@ export const authSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("loginUserType");
       localStorage.removeItem("userData");
+      localStorage.removeItem("session");
       state.auth = false;
       state.user = undefined;
       state.loginUserType = undefined;

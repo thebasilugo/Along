@@ -4,18 +4,20 @@ import DepartureBoardIcon from "@mui/icons-material/DepartureBoard";
 import FadingCardContent from "./FadingCardContent";
 import CustomButton from "../../../components/CustomButton";
 import MasonryImageList from "./MansoryImages";
-// import FadingCardContent from "../../test-ground";
+import { useAppSelector } from "../../../redux/store";
 
 const Content = () => {
+  const { user } = useAppSelector((state) => state.auth);
+  console.log(user)
   return (
     <>
       <Grid item container xs={12} gap={2} marginTop={8}>
         <Grid item xs={12} sm={8.2}>
           <CustomCard sx={{ backgroundColor: "#E6F7FF", height: "30rem" }}>
             <FadingCardContent />
-            {/* <FadingCardContent /> */}
           </CustomCard>
         </Grid>
+        {/* along time */}
         <Grid item xs={12} sm={3.5}>
           <CustomCard
             sx={{
@@ -112,6 +114,7 @@ const Content = () => {
           </CustomCard>
         </Grid>
       </Grid>
+      {/* explore important places */}
       <Grid item container marginTop={3}>
         <CustomCard sx={{ backgroundColor: "#E6F7FF", padding: "0rem" }}>
           <Grid item container xs={12}>

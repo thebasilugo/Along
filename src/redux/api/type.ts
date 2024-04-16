@@ -16,6 +16,7 @@ export type LogInResponse = {
   msg: string;
   token: string;
   user: UserProfile;
+  session: Session;
 };
 
 export interface UserProfile {
@@ -29,4 +30,11 @@ export interface UserProfile {
   user_name: string;
   account_type: UserType;
   gender: "male" | "female";
+}
+
+export interface Session {
+  tokenId: string;
+  lastActivity: string;
+  _v: number;
+  _id: string;
 }

@@ -20,10 +20,8 @@ const PublishedPost = () => {
   const handleOpenConfirmation = () => setOpenConfirmation(true);
   const handleCloseConfirmation = () => setOpenConfirmation(false);
   const { data: usersPost, isLoading } = useGetPostQuery();
-  console.log(usersPost)
-  if (isLoading) return <Loader />;
+  console.log(usersPost);
   const columns = ["Article Title", "Post Date", "Category", "Comments"];
-
   const handleDeletePost = async (postId: string) => {
     const response = await deletePost(postId);
     if ("data" in response) {
@@ -35,6 +33,7 @@ const PublishedPost = () => {
     }
   };
 
+  if (isLoading) return <Loader />;
   return (
     <>
       <CustomCard
@@ -110,7 +109,7 @@ const PublishedPost = () => {
                       />
                     </StyledTableCell>
                     <StyledTableCell align="left" sx={{ color: "#5C6E9A" }}>
-                      {comments || "N/A"}
+                      {comments?.length || "N/A"}
                     </StyledTableCell>
                     <StyledTableCell align="left" sx={{ color: "#5C6E9A" }}>
                       <FullCreatePostDialog

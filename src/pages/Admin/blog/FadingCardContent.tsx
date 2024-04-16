@@ -84,7 +84,6 @@ const FadingCardContent = () => {
     return () => clearInterval(intervalId);
   }, []);
   const handleRoute = (route: string) => {
-    console.log(route);
     navigate(route);
   };
   return (
