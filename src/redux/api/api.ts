@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
   prepareHeaders: (headers, { endpoint, getState }) => {
     const {
-      auth: { verifyUserToken, authToken, session },
+      auth: { verifyUserToken, authToken },
     } = getState() as RootState;
     headers.append("Accept", "application/json");
     if (endpoint === "verifyEmail") {
