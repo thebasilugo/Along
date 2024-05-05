@@ -1,7 +1,7 @@
 import { Grid, Box } from "@mui/material";
 import car from "../../asset/landing-page-icons/car.png";
 import icon from "../../asset/landing-page-icons/Group.png";
-import elipseIcon from "../../asset/landing-page-icons/ellipse.png";
+// import elipseIcon from "../../asset/landing-page-icons/ellipse.png";
 import elipseIcon2 from "../../asset/landing-page-icons/ellipse2.png";
 import elipseIcon3 from "../../asset/landing-page-icons/ellipse3.png";
 import rectangle from "../../asset/landing-page-icons/Rectangle.png";
@@ -62,7 +62,7 @@ const CarAndImages = () => {
               }}
             />
           </Box>
-          <Box
+          {/* <Box
             className="iconBounce"
             sx={{
               height: "1rem",
@@ -82,7 +82,7 @@ const CarAndImages = () => {
                 objectFit: "cover",
               }}
             />
-          </Box>
+          </Box> 
           <Box
             className="iconBounce"
             sx={{
@@ -103,7 +103,7 @@ const CarAndImages = () => {
                 objectFit: "cover",
               }}
             />
-          </Box>
+          </Box>*/}
         </>
         <>
           {/* icon at the bonnet of the car */}
@@ -178,7 +178,7 @@ const CarAndImages = () => {
         </>
         <>
           {/* the blue circle in front of the car */}
-          <Box
+          {/* <Box
             className="iconBounce"
             sx={{
               height: "1.3rem",
@@ -198,7 +198,7 @@ const CarAndImages = () => {
                 objectFit: "cover",
               }}
             />
-          </Box>
+          </Box> */}
         </>
         <>
           <Box
