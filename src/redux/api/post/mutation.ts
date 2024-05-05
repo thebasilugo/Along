@@ -10,6 +10,15 @@ export const postSlice = api.injectEndpoints({
       invalidatesTags: ["post"],
       transformResponse: (response: { message: string }) => response.message,
     }),
+    savePostAsDraft: builder.mutation<string, object>({
+      query: (body) => ({
+        url: "/post/draft",
+        method: "post",
+        body,
+      }),
+      invalidatesTags: ["post"],
+      transformResponse: (response: { message: string }) => response.message,
+    }),
     updatePost: builder.mutation<string, { postId?: string; body: object }>({
       query: ({ postId, body }) => ({
         url: `/${postId}`,
@@ -21,7 +30,7 @@ export const postSlice = api.injectEndpoints({
     }),
     deletePost: builder.mutation<string, string | undefined>({
       query: (postId) => ({
-        url: `/${postId}`,
+        url: `/post/${postId}`,
         method: "delete",
       }),
       transformResponse: (response: { message: string }) => response.message,
@@ -35,4 +44,5 @@ export const {
   useCreatePostMutation,
   useDeletePostMutation,
   useUpdatePostMutation,
+  useSavePostAsDraftMutation
 } = postSlice;

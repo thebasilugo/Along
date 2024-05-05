@@ -1,24 +1,25 @@
 import { useState, FC, ChangeEvent } from "react";
 import { TextField, IconButton, Grow } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
+
 type SearchComponentProps = {
+  //@ts-ignore
   onChange?: (value: string) => void;
   searchTerm?: string;
   placeholder?: string;
+  name?: string;
 };
 
 const SearchComponent: FC<SearchComponentProps> = ({
   onChange,
+  name,
   searchTerm,
   placeholder,
 }) => {
   const [isSearchOpen, setSearchOpen] = useState(true);
-
   const toggleSearch = () => {
     setSearchOpen(!isSearchOpen);
   };
-
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     if (onChange) {
@@ -27,37 +28,33 @@ const SearchComponent: FC<SearchComponentProps> = ({
   };
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       {isSearchOpen ? (
         <Grow
-          style={{ transformOrigin: "0 0 0", width: "100%" }}
+          style={{ transformOrigin: "0 0 0" }}
           timeout={1000}
           in={isSearchOpen}
           mountOnEnter
           unmountOnExit
         >
           <TextField
-            sx={{
-              "& .MuiInputBase-root": { borderRadius: "2rem", width: "100%" },
-            }}
+            sx={{ "& .MuiInputBase-root": { borderRadius: "0.5rem" } }}
             variant="outlined"
             placeholder={placeholder ? placeholder : "Search..."}
             size="small"
+            name={name ?? ""}
             color="primary"
+            fullWidth
             InputProps={{
               startAdornment: (
                 <IconButton onClick={toggleSearch} edge="start">
                   <SearchOutlined />
                 </IconButton>
               ),
-              endAdornment: (
-                <IconButton onClick={toggleSearch} edge="start">
-                  <CameraAltIcon />
-                </IconButton>
-              ),
             }}
-            onBlur={toggleSearch}
-            onChange={handleInputChange}
+            // onBlur={toggleSearch}
+            //@ts-expect-error sss
+            onChange={onChange ? onChange : handleInputChange}
             value={searchTerm || ""}
           />
         </Grow>

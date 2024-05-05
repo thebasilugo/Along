@@ -10,8 +10,17 @@ export const postSlice = api.injectEndpoints({
 
       transformResponse: (response: any) => response,
     }),
+    getUserPost: builder.query<any, { email: string }>({
+      query: (body) => ({
+        url: `/post/usersPosts`,
+        body,
+      }),
+      providesTags: ["post"],
+
+      transformResponse: (response: any) => response,
+    }),
   }),
 });
 
 // Destructure the generated endpoints
-export const { useGetPostQuery } = postSlice;
+export const { useGetPostQuery, useGetUserPostQuery } = postSlice;

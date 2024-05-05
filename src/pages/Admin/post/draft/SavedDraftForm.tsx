@@ -1,19 +1,20 @@
 import { Grid, Box, Typography } from "@mui/material";
 import { Formik, Form, FormikHelpers } from "formik";
-import FormikControl from "../../../components/validation/FormikControl";
-import CustomButton from "../../../components/CustomButton";
-import { CreatePostSchema } from "../../../components/validation/ValidationSchema";
+import FormikControl from "../../../../components/validation/FormikControl";
+import CustomButton from "../../../../components/CustomButton";
+import { CreatePostSchema } from "../../../../components/validation/ValidationSchema";
 import { useState } from "react";
 import { Send } from "@mui/icons-material";
+import SaveIcon from "@mui/icons-material/Save";
 import {
+  useSavePostAsDraftMutation,
   useCreatePostMutation,
   useUpdatePostMutation,
-  useSavePostAsDraftMutation,
-} from "../../../redux/api/post/mutation";
+} from "../../../../redux/api/post/mutation";
 import { ToastContent, toast } from "react-toastify";
-import { useAppSelector } from "../../../redux/store";
-import MultipleButton from "../../../components/MultipleButton";
-import { Drafts } from "@mui/icons-material";
+import { useAppSelector } from "../../../../redux/store";
+import MultipleButton from "../../../../components/MultipleButton";
+// import { Drafts } from "@mui/icons-material";
 
 interface initialValuesProps {
   title: string;
@@ -21,7 +22,7 @@ interface initialValuesProps {
   image: File | null;
   category: string;
 }
-const CreateForm = ({ editPostPayload, mode }: any) => {
+const SavedDraftForm = ({ editPostPayload, mode }: any) => {
   const { user } = useAppSelector((state) => state.auth);
   const initialValues: initialValuesProps = {
     title: editPostPayload?.title || "",
@@ -54,8 +55,8 @@ const CreateForm = ({ editPostPayload, mode }: any) => {
     },
   ];
   const [createPost, { isLoading: isCreating }] = useCreatePostMutation();
-  const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation();
   const [saveDraft, { isLoading: isSaving }] = useSavePostAsDraftMutation();
+  const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation();
 
   const handleSubmit = async (
     values: initialValuesProps,
@@ -122,89 +123,90 @@ const CreateForm = ({ editPostPayload, mode }: any) => {
   };
   const optionsIcon = [
     { Icon: Send, text: "Publish Post" },
-    { Icon: Drafts, text: "Save as draft" },
+    { Icon: SaveIcon, text: "Update draft" },
+    // { Icon: Drafts, text: "Save as draft" },
   ];
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={CreatePostSchema}
-    >
-      {({ values }) => {
-        return (
-          <Form>
-            <Box sx={{ width: "50%", marginX: "auto" }}>
-              <Grid item container flexDirection={"column"} gap={3}>
-                <Grid item>
-                  <FormikControl name="title" label="Article Title" />
-                </Grid>
-                <Grid item>
-                  <FormikControl
-                    name="category"
-                    placeholder="Category"
-                    control="select"
-                    options={options}
-                  />
-                </Grid>
-                <Grid item>
-                  <FormikControl
-                    name="description"
-                    label="Along Place Description"
-                    multiline
-                    minRows={7}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  {values?.image !== null && (
-                    <Typography>
-                      <span style={{ fontWeight: "600" }}>
-                        uploaded file :{" "}
-                      </span>
-                      {(values as any)?.image?.name}
-                    </Typography>
-                  )}
-                  <FormikControl name="image" control="files" />
-                </Grid>
-                <Grid item>
-                  <Grid item container>
-                    <Grid
-                      item
-                      sx={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "end",
-                      }}
-                    >
-                      {mode === "create" && (
+    <Grid item xs={12}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={CreatePostSchema}
+      >
+        {({ values }) => {
+          return (
+            <Form>
+              <Box sx={{ width: "50%", marginX: "auto" }}>
+                <Grid item container flexDirection={"column"} gap={3}>
+                  <Grid item>
+                    <FormikControl name="title" label="Article Title" />
+                  </Grid>
+                  <Grid item>
+                    <FormikControl
+                      name="category"
+                      placeholder="Category"
+                      control="select"
+                      options={options}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <FormikControl
+                      name="description"
+                      label="Along Place Description"
+                      multiline
+                      minRows={7}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    {values?.image !== null && (
+                      <Typography>
+                        <span style={{ fontWeight: "600" }}>
+                          uploaded file :{" "}
+                        </span>
+                        {(values as any)?.image?.name}
+                      </Typography>
+                    )}
+                    <FormikControl name="image" control="files" />
+                  </Grid>
+                  <Grid item>
+                    <Grid item container>
+                      <Grid
+                        item
+                        sx={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "end",
+                        }}
+                      >
                         <MultipleButton
                           options={optionsIcon}
                           setChoice={setChoice}
                           isLoading={isCreating || isUpdating || isSaving}
                         />
-                      )}
-                    </Grid>
-                    <Grid item>
-                      {mode === "edit" && (
-                        <CustomButton
-                          title={
-                            mode === "create" ? "Publish Post" : "Update Post"
-                          }
-                          type="submit"
-                          isSubmitting={
-                            mode === "create" ? isCreating : isUpdating
-                          }
-                        />
-                      )}
+                      </Grid>
+                      <Grid item>
+                        {mode === "edit" && (
+                          <CustomButton
+                            title={
+                              mode === "create" ? "Publish Post" : "Update Post"
+                            }
+                            type="submit"
+                            isSubmitting={
+                              mode === "create" ? isCreating : isUpdating
+                            }
+                          />
+                        )}
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          </Form>
-        );
-      }}
-    </Formik>
+              </Box>
+            </Form>
+          );
+        }}
+      </Formik>
+    </Grid>
   );
 };
 
-export default CreateForm;
+export default SavedDraftForm;

@@ -49,5 +49,5 @@ export const CreatePostSchema = object({
 
       return acceptedImageFormats.includes((value as File).type);
     })
-    .required("Image Proof of certificate is Required"),
+    .required("Image Proof is Required"),
 });

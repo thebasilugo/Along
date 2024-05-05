@@ -1,4 +1,5 @@
 import * as React from "react";
+import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,9 +9,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import CustomButton from "./CustomButton";
-import { Grid } from "@mui/material";
+import { Stack, Grid } from "@mui/material";
 import CreateForm from "../pages/Admin/post/Form";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { useState } from "react";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -30,8 +32,8 @@ interface dialogProps {
   category?: string;
 }
 
-export default function FullCreatePostDialog({
-  mode = "create",
+export default function CreateDialog({
+  mode,
   id,
   title,
   description,
@@ -46,20 +48,25 @@ export default function FullCreatePostDialog({
     category: category,
   };
   const [open, setOpen] = React.useState(false);
-
+  const [draft, setDraft] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  const handleSaveDraft = () => {
+    setDraft(true);
+  };
 
   return (
     <React.Fragment>
-      {mode == "create" ? (
+      {draft ? (
+        mode == "draft"
+      ) : mode === "create" ? (
         <CustomButton
           onClick={handleClickOpen}
-          title="Create New Post"
+          title={"Create New Post"}
           variant="outlined"
           sx={{
             paddingX: "2rem",
@@ -97,13 +104,18 @@ export default function FullCreatePostDialog({
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               {mode === "create" ? "Get Started" : "Edit mode"}
             </Typography>
-            {/* <Stack flexDirection={"row"} gap={3}>
+            <Stack flexDirection={"row"} gap={3}>
               {mode == "create" && (
-                <Button autoFocus variant="outlined" color="inherit">
+                <Button
+                  autoFocus
+                  variant="outlined"
+                  color="inherit"
+                  onClick={handleSaveDraft}
+                >
                   save as draft
                 </Button>
               )}
-            </Stack> */}
+            </Stack>
           </Toolbar>
         </AppBar>
         <Grid
@@ -122,7 +134,11 @@ export default function FullCreatePostDialog({
             </Typography>
           </Grid>
           <Grid item sx={{ width: "100%" }}>
-            <CreateForm editPostPayload={editPayload} mode={mode} />
+            <CreateForm
+              editPostPayload={editPayload}
+              mode={mode}
+              draft={draft}
+            />
           </Grid>
         </Grid>
       </Dialog>

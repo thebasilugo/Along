@@ -1,9 +1,10 @@
 import { Grid, Box, Typography } from "@mui/material";
-import CustomButton from "../../../components/CustomButton";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import CustomCard from "../../../components/CustomCard";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import FullCreatePostDialog from "../../../components/FullCreatePostDialog";
+import DraftDialog from "./draft/Draft";
+
 const CreatePost = () => {
   return (
     <>
@@ -46,11 +47,11 @@ const CreatePost = () => {
               </Grid>
               <Grid item>
                 <Typography variant="h6">
-                  Use this section to create, manage and see how your post are
-                  doing,{" "}
+                  Use this section to create new post,
                   <span
                     style={{
                       fontWeight: "bold",
+                      marginLeft: ".5rem",
                     }}
                   >
                     click the create button to begin!
@@ -85,21 +86,7 @@ const CreatePost = () => {
                 </Box>
               </Grid>
               <Grid item>
-                <CustomButton
-                  title="View Drafts"
-                  variant="outlined"
-                  sx={{
-                    paddingX: "2rem",
-                    paddingY: "1rem",
-                    textTransform: "initial",
-                    fontSize: "1.2rem",
-                    bgcolor: "#323a4d",
-                    color: "#fff",
-                    "&:hover": {
-                      color: "black",
-                    },
-                  }}
-                />
+                <DraftDialog />
               </Grid>
               <Grid item>
                 <div

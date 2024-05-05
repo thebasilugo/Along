@@ -6,14 +6,14 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
   prepareHeaders: (headers, { endpoint, getState }) => {
     const {
-      auth: { verifyUserToken, authToken },
+      auth: { verifyUserToken, authToken, session },
     } = getState() as RootState;
     headers.append("Accept", "application/json");
     if (endpoint === "verifyEmail") {
-      headers.append("AUTHORIZATION", `Bearer ${verifyUserToken}`);
+      headers.append("AUTHORIZATION", `${verifyUserToken}`);
     }
     if (authToken) {
-      headers.append("AUTHORIZATION", `Bearer ${authToken}`);
+      headers.append("AUTHORIZATION", `${authToken || session}`);
     }
   },
 });

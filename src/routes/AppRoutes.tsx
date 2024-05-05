@@ -6,6 +6,7 @@ const AuthPage = lazy(() => import("./AuthPage"));
 const PrivateRoutes = lazy(() => import("./PrivateRoutes"));
 const LandingPageNew = lazy(() => import("../pages/LandingPageNew"));
 const Parks = lazy(() => import("../pages/blog-categories/parks"));
+const Blog = lazy(() => import("../pages/blog-categories/Blog"));
 const GovernmentOfficies = lazy(
   () => import("../pages/blog-categories/governement-officies")
 );
@@ -38,6 +39,7 @@ const AppRoutes = () => {
             <Route path="/hotels" element={<Hotels />} />
             <Route path="/malls" element={<Malls />} />
             <Route path="/parks" element={<Parks />} />
+            <Route path="/blog" element={<Blog />} />
             <Route
               path="/government-offices"
               element={<GovernmentOfficies />}

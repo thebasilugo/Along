@@ -1,13 +1,13 @@
-import React, { FC, useState, useRef, ChangeEvent, DragEvent } from 'react';
-import { Grid, Typography, Button } from '@mui/material';
-import { Field, ErrorMessage, useFormikContext } from 'formik';
-import TextError from './TextError';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import { InputProps } from './types';
-import Modals from '../Modals';
-import CustomButton from '../CustomButton';
-pdfjs.GlobalWorkerOptions.workerSrc = '/path/to/pdf.worker.js';
-import { Document, Page, pdfjs } from 'react-pdf';
+import React, { FC, useState, useRef, ChangeEvent, DragEvent } from "react";
+import { Grid, Typography, Button, FormLabel } from "@mui/material";
+import { Field, ErrorMessage, useFormikContext } from "formik";
+import TextError from "./TextError";
+import { InputProps } from "./types";
+import Modals from "../Modals";
+import CustomButton from "../CustomButton";
+pdfjs.GlobalWorkerOptions.workerSrc = "/path/to/pdf.worker.js";
+import { Document, Page, pdfjs } from "react-pdf";
+import UploadIcons from "../../asset/UploadIcon";
 
 const FileUpload: React.FC<InputProps> = ({ name, show }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -15,8 +15,10 @@ const FileUpload: React.FC<InputProps> = ({ name, show }) => {
     fileInputRef.current?.click();
   };
   const [file, setFile] = useState<File | null>(null);
+  console.log(file);
   const [open, setOpen] = useState(false);
-  const { setFieldValue, handleSubmit, errors } = useFormikContext();
+  const handleClose = () => setOpen(false);
+  const { setFieldValue, errors } = useFormikContext();
   const [isDragging, setIsDragging] = useState(false);
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -62,9 +64,9 @@ const FileUpload: React.FC<InputProps> = ({ name, show }) => {
     setNumPages(numPages);
   };
   const handleDocumentError = (error: Error) => {
-    console.error('Error loading PDF:', error);
+    console.error("Error loading PDF:", error);
   };
-  const { isSubmitting } = useFormikContext();
+  // const { isSubmitting } = useFormikContext();
   return (
     <>
       <Grid
@@ -75,39 +77,59 @@ const FileUpload: React.FC<InputProps> = ({ name, show }) => {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         sx={{
-          border: `1px solid ${isDragging ? 'blue' : '#DBDBDB'}`,
-          alignItems: 'center',
-          minHeight: '25rem',
-          borderRadius: '.5rem',
-          justifyContent: 'center',
-          padding: '20px',
-          flexDirection: 'column',
-          cursor: 'pointer',
+          border: `1px solid ${isDragging ? "blue" : "#DBDBDB"}`,
+          alignItems: "center",
+          minHeight: "15rem",
+          borderRadius: ".5rem",
+          justifyContent: "center",
+          padding: "20px",
+          flexDirection: "column",
+          cursor: "pointer",
         }}
       >
         <input
           type="file"
           name={name}
           accept="image/*,application/pdf,.xlsx,.xls,.csv"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           ref={fileInputRef}
           onChange={handleFileInputChange}
         />
         <Grid item sx={{ m: 0 }}>
-          <Grid item container flexDirection="column" alignItems={'center'} sx={{ m: 0 }} justifyContent={'center'}>
-            <UploadFileIcon sx={{ fontSize: '5rem', mb: 2, cursor: 'pointer' }} onClick={handleUploadButtonClick} />
+          <Grid
+            item
+            container
+            flexDirection="column"
+            alignItems={"center"}
+            sx={{ m: 0 }}
+            justifyContent={"center"}
+          >
+            <UploadIcons
+              sx={{ fontSize: "5rem", mb: 2, cursor: "pointer" }}
+              onClick={handleUploadButtonClick}
+            />
             <Typography variant="h5" fontWeight={400} color="black300.main">
-              Drag and drop files or click to select files to upload
+              {file
+                ? file?.name
+                : "Drag and drop files or click to select files to upload"}
             </Typography>
           </Grid>
         </Grid>
       </Grid>
       {file && show && (
-        <Modals isOpen={open} title={'File Preview'} handleClose={() => setOpen(false)}>
+        <Modals
+          isOpen={open}
+          title={"File Preview"}
+          handleClose={() => setOpen(false)}
+        >
           <Grid item md={12}>
-            {file?.type.includes('pdf') ? (
+            {file?.type.includes("pdf") ? (
               <div>
-                <Document file={file} onLoadSuccess={handleDocumentLoadSuccess} onError={handleDocumentError}>
+                <Document
+                  file={file}
+                  onLoadSuccess={handleDocumentLoadSuccess}
+                  onError={handleDocumentError}
+                >
                   <Page pageNumber={pageNumber} />
                 </Document>
                 <div>
@@ -142,7 +164,11 @@ const FileUpload: React.FC<InputProps> = ({ name, show }) => {
                 <img
                   src={URL.createObjectURL(file)}
                   alt="Uploaded File"
-                  style={{ maxWidth: '100%', width: '100%', maxHeight: '40rem' }}
+                  style={{
+                    maxWidth: "100%",
+                    width: "100%",
+                    maxHeight: "40rem",
+                  }}
                 />
                 <div>
                   <Typography variant="h6">{file?.name}</Typography>
@@ -155,7 +181,8 @@ const FileUpload: React.FC<InputProps> = ({ name, show }) => {
               </>
             )}
             <Grid item mt={4}>
-              <CustomButton type="submit" title="Publish Post" onClick={handleSubmit} isSubmitting={isSubmitting} />
+              <CustomButton type="button" title="close" onClick={handleClose} />
+              {/* <CustomButton type="submit" title="upload" onClick={handleSubmit} isSubmitting={isSubmitting} /> */}
             </Grid>
           </Grid>
         </Modals>
@@ -168,10 +195,20 @@ FileUpload.defaultProps = {
 };
 
 const FilesUpload: FC<InputProps> = (props) => {
-  const { name, ...rest } = props; // Include onClick prop here
+  const { name, placeholder, ...rest } = props; // Include onClick prop here
 
   return (
     <Grid container direction="column">
+      <FormLabel
+        sx={{
+          mb: 1.5,
+          fontSize: "1.4rem",
+          color: "text.default",
+          fontWeight: 600,
+        }}
+      >
+        {placeholder}
+      </FormLabel>
       <Field {...rest} name={name} as={FileUpload} /> {/* Pass onClick here */}
       <ErrorMessage name={name} component={TextError} />
     </Grid>
