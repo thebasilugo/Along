@@ -4,7 +4,7 @@ import CustomizedTables, {
   StyledTableRow,
 } from "../../../components/Table";
 import Loader from "../../../components/Loader";
-import { Grid, Chip, Box, Typography, IconButton, Button } from "@mui/material";
+import { Grid, Chip, Box, Typography, IconButton } from "@mui/material";
 import CustomCard from "../../../components/CustomCard";
 import { DeleteRounded } from "@mui/icons-material";
 import { formatDateTime } from "../../../utils";
