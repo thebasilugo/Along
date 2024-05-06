@@ -21,7 +21,6 @@ import {
   useGetPostQuery,
   useGetUserPostQuery,
 } from "../../../redux/api/post/query";
-import ShareButton from "./ShareButton";
 
 const PublishedPost = () => {
   // const { session, user } = useAppSelector((state) => state.auth);
@@ -241,7 +240,6 @@ const PublishedPost = () => {
             </Typography>
           </ConfirmationModal>
         </Grid>
-        <ShareButton url="https://images.unsplash.com/photo-1714685953621-4e7ae070ee02?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" />
       </CustomCard>
     </>
   );
