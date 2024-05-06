@@ -10,10 +10,9 @@ export const postSlice = api.injectEndpoints({
 
       transformResponse: (response: any) => response,
     }),
-    getUserPost: builder.query<any, { email: string }>({
-      query: (body) => ({
+    getUserPost: builder.query<any, void>({
+      query: () => ({
         url: `/post/usersPosts`,
-        body,
       }),
       providesTags: ["post"],
 

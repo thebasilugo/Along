@@ -4,7 +4,7 @@ import CustomizedTables, {
   StyledTableRow,
 } from "../../../components/Table";
 import Loader from "../../../components/Loader";
-import { Grid, Chip, Box, Typography, IconButton } from "@mui/material";
+import { Grid, Chip, Box, Typography, IconButton, Button } from "@mui/material";
 import CustomCard from "../../../components/CustomCard";
 import { DeleteRounded } from "@mui/icons-material";
 import { formatDateTime } from "../../../utils";
@@ -17,7 +17,11 @@ import SearchComponent from "../../../components/SearchComponent";
 // import { useAppSelector } from "../../../redux/store";
 // import errorImage from "../../../asset/animatedImages/error500.json";
 // import Lottie from "lottie-react";
-import { useGetPostQuery } from "../../../redux/api/post/query";
+import {
+  useGetPostQuery,
+  useGetUserPostQuery,
+} from "../../../redux/api/post/query";
+import ShareButton from "./ShareButton";
 
 const PublishedPost = () => {
   // const { session, user } = useAppSelector((state) => state.auth);
@@ -27,7 +31,8 @@ const PublishedPost = () => {
   const handleOpenConfirmation = () => setOpenConfirmation(true);
   const handleCloseConfirmation = () => setOpenConfirmation(false);
   const { data: usersPost, isLoading } = useGetPostQuery();
-  console.log(usersPost)
+  const { data: currentLoggedIn } = useGetUserPostQuery();
+  console.log(currentLoggedIn);
   // const [usersPost, setUsersPost] = useState<any>(null);
   // const [isLoading, setIsLoading] = useState(false);
   const columns = ["Post Title", "Post Date", "Category", "Comments"];
@@ -236,6 +241,7 @@ const PublishedPost = () => {
             </Typography>
           </ConfirmationModal>
         </Grid>
+        <ShareButton url="https://images.unsplash.com/photo-1714685953621-4e7ae070ee02?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8" />
       </CustomCard>
     </>
   );

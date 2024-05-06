@@ -6,8 +6,10 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 // import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
+import { useNavigate } from "react-router-dom";
 
 export default function Blog() {
+  const navigate = useNavigate();
   return (
     <>
       <Grid item width={"90%"} marginX={"auto"} flexDirection={"column"}>
@@ -22,7 +24,7 @@ export default function Blog() {
                 src={`${item.img}?w=248&fit=crop&auto=format`}
                 alt={item.title}
                 loading="lazy"
-                onClick={() => alert(item?.title)}
+                onClick={() => navigate(`/${item?.title}`)}
                 style={{ cursor: "pointer" }}
               />
               <ImageListItemBar
@@ -50,7 +52,7 @@ export default function Blog() {
 const itemData = [
   {
     img: "https://images.unsplash.com/photo-1493770348161-369560ae357d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Resturants",
+    title: "resturants",
     featured: true,
   },
   {
