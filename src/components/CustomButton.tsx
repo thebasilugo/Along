@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import Loader from "./Loader";
-import { useTheme } from "@mui/material/styles";
 import { FC } from "react";
 import { CustomButtonProp } from "./type";
 
@@ -11,8 +10,6 @@ const CustomButton: FC<CustomButtonProp> = ({
   onClick,
   ...rest
 }) => {
-  const theme = useTheme();
-  // bgColor
   return (
     <Button
       disableElevation
@@ -25,7 +22,7 @@ const CustomButton: FC<CustomButtonProp> = ({
         fontSize: { md: "1.6rem", xs: "1.4rem" },
         width: "100%",
         py: ".5em",
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#01623b",
       }}
       variant={variant}
       size="medium"

@@ -8,6 +8,8 @@ const NotFound = lazy(() => import("../pages/Not-found/NotFound"));
 const Stats = lazy(() => import("../pages/Admin/stats"));
 const CreatePost = lazy(() => import("../pages/Admin/post/Post"));
 const Settings = lazy(() => import("../pages/Admin/settings"));
+const AllUsers = lazy(() => import("../pages/Admin/all-users/AllUsers"));
+const ViewUsers = lazy(() => import("../pages/Admin/all-users/ViewUser"));
 
 const AdminRoutes = () => {
   return (
@@ -19,6 +21,8 @@ const AdminRoutes = () => {
         <Route path="settings" element={<Settings />} />
         <Route path="stats" element={<Stats />} />
         <Route path="create-post" element={<CreatePost />} />
+        <Route path="users-list" element={<AllUsers />} />
+        <Route path="user-list/:username" element={<ViewUsers />} />
         <Route index element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
       </Route>

@@ -1,8 +1,12 @@
+import { Typography } from "@mui/material";
+import StatsGraph from "./StatsGraph";
 
 const index = () => {
   return (
-    <div>Stats</div>
-  )
-}
+    <>
+      <StatsGraph />
+    </>
+  );
+};
 
-export default index
+export default index;

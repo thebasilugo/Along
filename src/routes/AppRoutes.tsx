@@ -15,6 +15,7 @@ const Malls = lazy(() => import("../pages/blog-categories/malls"));
 const ResturantAndCafes = lazy(
   () => import("../pages/blog-categories/resturants-and-cafe")
 );
+const ReadBlog = lazy(() => import("../pages/read-blog/Layout"));
 
 const AppRoutes = () => {
   const { auth } = useAppSelector((state) => state.auth);
@@ -40,6 +41,7 @@ const AppRoutes = () => {
             <Route path="/malls" element={<Malls />} />
             <Route path="/parks" element={<Parks />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/title/read" element={<ReadBlog />} />
             <Route
               path="/government-offices"
               element={<GovernmentOfficies />}

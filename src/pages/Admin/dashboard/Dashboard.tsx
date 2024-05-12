@@ -3,6 +3,7 @@ import Header from "./Header";
 import Welcome from "./Welcome";
 import Footer from "./Footer";
 import { getUserType } from "../../../utils";
+// import TeamCard from "../post/TeamCard";
 const Dashboard = () => {
   const accountType = getUserType();
   return (

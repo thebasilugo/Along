@@ -5,9 +5,14 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import CustomButton from "../../../components/CustomButton";
 import { useGetUsersQuery } from "../../../redux/api/users/query";
 import Loader from "../../../components/Loader";
+import { useNavigate } from "react-router";
 
 const Footer = () => {
   const { data: allRegisteredUsers, isLoading } = useGetUsersQuery();
+  const navigate = useNavigate();
+  const handleGoToAllUsers = () => {
+    navigate("all-users");
+  };
   if (isLoading) return <Loader />;
   return (
     <Grid item container xs={12} marginTop={5}>
@@ -83,6 +88,7 @@ const Footer = () => {
                 <Grid item>
                   <CustomButton
                     title="see info"
+                    onClick={handleGoToAllUsers}
                     sx={{
                       bgcolor: "#10AE9D",
                       color: "#fff",

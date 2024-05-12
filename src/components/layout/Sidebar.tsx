@@ -13,6 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useAppDispatch } from "../../redux/store";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import GroupIcon from "@mui/icons-material/Group";
 import { logoutUser } from "../../redux/slices/auth/auth.reducer";
 import CameraRollIcon from "@mui/icons-material/CameraRoll";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -63,7 +64,15 @@ const SideBar: FC<HeaderProps> = ({ handleDrawerToggle }) => {
       Icon: <DashboardIcon />,
       route: "/dashboard",
     },
-
+    ...(accountType === "admin"
+      ? [
+          {
+            title: "All Users",
+            Icon: <GroupIcon />,
+            route: "/users-list",
+          },
+        ]
+      : []),
     {
       title: "Blog",
       Icon: <CameraRollIcon />,
