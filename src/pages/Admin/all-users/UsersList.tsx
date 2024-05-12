@@ -3,14 +3,16 @@ import { Grid, Typography, Chip, IconButton } from "@mui/material";
 import Loader from "../../../components/Loader";
 import ConfirmationModal from "../../../components/ConfirmationModal";
 import { formatDateTime } from "../../../utils";
-import { DeleteRounded, RemoveRedEye } from "@mui/icons-material";
+import { RemoveRedEye } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import CustomizedTables, {
   StyledTableCell,
   StyledTableRow,
 } from "../../../components/Table";
+import { PauseCircleOutline } from "@mui/icons-material";
 import { useGetUsersQuery } from "../../../redux/api/users/query";
+
 const UsersList = () => {
   const navigate = useNavigate();
   const columns = [
@@ -132,11 +134,14 @@ const UsersList = () => {
                       align="left"
                       sx={{ color: "#5C6E9A", display: "flex", width: "100%" }}
                     >
-                      <IconButton onClick={handleOpenConfirmation}>
+                      {/* <IconButton onClick={handleOpenConfirmation}>
                         <DeleteRounded color="error" />
-                      </IconButton>
+                      </IconButton> */}
                       <IconButton onClick={() => handleViewUser(user_name)}>
                         <RemoveRedEye />
+                      </IconButton>
+                      <IconButton onClick={handleOpenConfirmation}>
+                        <PauseCircleOutline color="error" />
                       </IconButton>
                     </StyledTableCell>
                   </StyledTableRow>

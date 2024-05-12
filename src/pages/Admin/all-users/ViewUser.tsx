@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { Grid, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 import { ArrowBack } from "@mui/icons-material";
+import UsersPost from "./UsersPost";
 const ViewUser = () => {
   const navigate = useNavigate();
   const handleBack = () => {
@@ -29,13 +30,28 @@ const ViewUser = () => {
         <Grid item>
           <Grid item container flexDirection={"column"} gap={3}>
             <Grid item>
-              <Typography variant="h1">{username}</Typography>
+              <Typography variant="h1">
+                {username}{" "}
+                <span style={{ fontWeight: "500", fontSize: "1.3rem" }}>
+                  joined Feb 12, 2024.
+                </span>
+              </Typography>
             </Grid>
             <Grid item>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-              porro, aut aliquam vero perspiciatis natus, reiciendis fugit eaque
-              quasi consequatur eveniet exercitationem? Delectus perspiciatis
-              asperiores eum odit ipsum illum tempora.
+              <Grid item container flexDirection={"column"} gap={3}>
+                <Grid item>
+                  <Typography
+                    variant="h2"
+                    textAlign={"center"}
+                    color={"GrayText"}
+                  >
+                    Users Post
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <UsersPost />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

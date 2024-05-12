@@ -23,7 +23,7 @@ const CommentBox = () => {
     console.log(values);
   };
   const handleSignIn = () => {
-    toast.success("kindly sign in to leave a comment");
+    toast.info("kindly sign in to leave a comment");
   };
   return (
     <>
@@ -60,7 +60,9 @@ const CommentBox = () => {
                   <Button variant="contained" color="error">
                     Cancel
                   </Button>
-                  <Button variant="contained" onClick={handleSignIn}>Send</Button>
+                  <Button variant="contained" onClick={handleSignIn}>
+                    Send
+                  </Button>
                 </Grid>
               </Grid>
             </Form>
