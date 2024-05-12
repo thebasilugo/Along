@@ -9,10 +9,10 @@ import { useNavigate } from "react-router";
 
 const Footer = () => {
   const { data: allRegisteredUsers, isLoading } = useGetUsersQuery();
-  const navigate = useNavigate();
-  const handleGoToAllUsers = () => {
-    navigate("all-users");
-  };
+  const navigate = useNavigate()
+  const handleGoToAllUsers=()=>{
+    navigate('/users-list')
+  }
   if (isLoading) return <Loader />;
   return (
     <Grid item container xs={12} marginTop={5}>
